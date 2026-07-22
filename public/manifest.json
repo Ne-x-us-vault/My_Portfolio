@@ -1,0 +1,21 @@
+{
+  "name": "Jaswa J.R | Portfolio",
+  "short_name": "Jaswa J.R",
+  "description": "Full Stack Developer, IoT Engineer, AI/ML Enthusiast. Building intelligent systems from hardware to cloud.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050816",
+  "theme_color": "#3B82F6",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
