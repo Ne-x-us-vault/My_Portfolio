@@ -37,9 +37,9 @@ export const NAV_LINKS = [
 ];
 
 export const SOCIAL_LINKS = [
-  { label: "GitHub", url: "https://github.com/jaswa-jr" },
-  { label: "LinkedIn", url: "https://linkedin.com/in/jaswa-jr" },
-  { label: "Email", url: "mailto:jaswajr@example.com" },
+  { label: "GitHub", url: "https://github.com/Ne-x-us-vault" },
+  { label: "LinkedIn", url: "https://linkedin.com/in/jaswa-j-r" },
+  { label: "Email", url: "mailto:jaswa.personal.3617@outlook.com" },
 ];
 
 export const SKILL_CATEGORIES = [
@@ -117,7 +117,7 @@ export const PROJECTS = [
     techStack: ["ESP32", "Arduino", "Firebase", "MAX30102", "AD5933", "IoT"],
     category: "IoT",
     image: "/projects/maternal-guard.jpg",
-    github: "https://github.com/jaswa-jr/maternal-guard",
+    github: "https://github.com/Ne-x-us-vault/My_Portfolio",
     challenges: [
       "Accurate real-time biomedical signal processing on embedded hardware",
       "Power-efficient continuous monitoring",
@@ -145,7 +145,7 @@ export const PROJECTS = [
     techStack: ["ESP32", "Firebase", "React", "Node.js", "IoT", "DS18B20"],
     category: "IoT",
     image: "/projects/water-monitoring.jpg",
-    github: "https://github.com/jaswa-jr/smart-water-monitoring",
+    github: "https://github.com/Ne-x-us-vault/My_Portfolio",
     live: "#",
     challenges: [
       "Handling multiple sensor data streams simultaneously",
@@ -174,7 +174,7 @@ export const PROJECTS = [
     techStack: ["Python", "TensorFlow", "CNN", "Flask", "OpenCV", "Scikit-learn"],
     category: "AI/ML",
     image: "/projects/plant-disease.jpg",
-    github: "https://github.com/jaswa-jr/plant-disease-detection",
+    github: "https://github.com/Ne-x-us-vault/My_Portfolio",
     challenges: [
       "Training a CNN model with limited dataset",
       "Achieving high accuracy across multiple disease categories",
@@ -202,7 +202,7 @@ export const PROJECTS = [
     techStack: ["React", "Node.js", "MongoDB", "Firebase", "Express", "REST APIs"],
     category: "Full Stack",
     image: "/projects/telecura.jpg",
-    github: "https://github.com/jaswa-jr/telecura",
+    github: "https://github.com/Ne-x-us-vault/My_Portfolio",
     challenges: [
       "Secure patient data handling with HIPAA-like compliance",
       "Real-time communication between patients and doctors",
@@ -230,7 +230,7 @@ export const PROJECTS = [
     techStack: ["React", "Node.js", "MongoDB", "Docker", "JWT", "Express"],
     category: "Full Stack",
     image: "/projects/crud-app.jpg",
-    github: "https://github.com/jaswa-jr/fullstack-crud",
+    github: "https://github.com/Ne-x-us-vault/My_Portfolio",
     live: "#",
     challenges: [
       "Implementing secure JWT-based authentication",

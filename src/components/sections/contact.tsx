@@ -7,11 +7,11 @@ import { Mail, Phone, MapPin, Github, Linkedin, Send } from "lucide-react";
 import { useState } from "react";
 
 const contactInfo = [
-  { icon: Mail, label: "Email", value: "jaswajr@example.com", href: "mailto:jaswajr@example.com" },
-  { icon: Phone, label: "Phone", value: "+91 XXXXX XXXXX", href: "tel:+91XXXXXXXXXX" },
+  { icon: Mail, label: "Email", value: "jaswa.personal.3617@outlook.com", href: "mailto:jaswa.personal.3617@outlook.com" },
+  { icon: Phone, label: "Phone", value: "+91 99449 73617", href: "tel:+919944973617" },
   { icon: MapPin, label: "Location", value: "Coimbatore, Tamil Nadu, India", href: "#" },
-  { icon: Github, label: "GitHub", value: "github.com/jaswa-jr", href: "https://github.com/jaswa-jr" },
-  { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/jaswa-jr", href: "https://linkedin.com/in/jaswa-jr" },
+  { icon: Github, label: "GitHub", value: "github.com/Ne-x-us-vault", href: "https://github.com/Ne-x-us-vault" },
+  { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/jaswa-j-r", href: "https://linkedin.com/in/jaswa-j-r" },
 ];
 
 export default function Contact() {

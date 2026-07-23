@@ -128,9 +128,9 @@ export default function Hero() {
             className="flex items-center gap-4"
           >
             {[
-              { icon: Github, url: "https://github.com/jaswa-jr", label: "GitHub" },
-              { icon: Linkedin, url: "https://linkedin.com/in/jaswa-jr", label: "LinkedIn" },
-              { icon: Mail, url: "mailto:jaswajr@example.com", label: "Email" },
+              { icon: Github, url: "https://github.com/Ne-x-us-vault", label: "GitHub" },
+              { icon: Linkedin, url: "https://linkedin.com/in/jaswa-j-r", label: "LinkedIn" },
+              { icon: Mail, url: "mailto:jaswa.personal.3617@outlook.com", label: "Email" },
             ].map(({ icon: Icon, url, label }) => (
               <a
                 key={label}

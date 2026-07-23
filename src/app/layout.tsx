@@ -75,8 +75,8 @@ const jsonLd = {
     addressCountry: "IN",
   },
   sameAs: [
-    "https://github.com/jaswa-jr",
-    "https://linkedin.com/in/jaswa-jr",
+    "https://github.com/Ne-x-us-vault",
+    "https://linkedin.com/in/jaswa-j-r",
   ],
   knowsAbout: [
     "Full Stack Development",
