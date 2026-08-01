@@ -16,8 +16,9 @@ export default function NotFound() {
         <p className="mt-4 text-lg text-gray-400">Page not found</p>
         <Link
           href="/"
-          className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 px-6 py-3 text-sm text-white transition-all hover:bg-white/10 hover:border-white/20"
+          className="group relative mt-8 inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-accent-primary to-accent-secondary px-6 py-3 text-sm font-medium text-white shadow-lg shadow-accent-primary/25 transition-all hover:shadow-accent-primary/40 hover:scale-[1.03]"
         >
+          <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
           <Home className="h-4 w-4" />
           Back to Home
         </Link>

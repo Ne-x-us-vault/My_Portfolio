@@ -82,10 +82,13 @@ export default function CommandPalette() {
                   <button
                     key={link.href}
                     onClick={() => handleNavigate(link.href)}
-                    className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm text-gray-300 transition-colors hover:bg-white/5 hover:text-white"
+                    className="group flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm text-gray-300 transition-colors hover:bg-white/5 hover:text-white"
                   >
                     <span>{link.label}</span>
-                    <ArrowRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
+                    <span className="flex items-center gap-2 text-[10px] text-gray-500 opacity-0 transition-all duration-300 group-hover:opacity-100">
+                      Jump to
+                      <ArrowRight className="h-4 w-4" />
+                    </span>
                   </button>
                 ))}
                 {filteredLinks.length === 0 && (

@@ -38,6 +38,9 @@ const config: Config = {
         "slide-down": "slide-down 0.6s ease-out forwards",
         glow: "glow 2s ease-in-out infinite alternate",
         "border-flow": "border-flow 3s linear infinite",
+        aurora: "aurora-drift 20s ease-in-out infinite alternate",
+        "aurora-reverse": "aurora-drift 26s ease-in-out infinite alternate-reverse",
+        caret: "caret-blink 1s step-end infinite",
       },
       keyframes: {
         "gradient-shift": {

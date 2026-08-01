@@ -11,7 +11,8 @@ export default function Loading() {
         className="flex flex-col items-center gap-4"
       >
         <div className="relative">
-          <div className="h-16 w-16 rounded-full border-2 border-white/10" />
+          <div className="absolute inset-0 h-16 w-16 rounded-full bg-accent-primary/20 blur-xl animate-pulse-glow" />
+          <div className="relative h-16 w-16 rounded-full border-2 border-white/10" />
           <div className="absolute inset-0 h-16 w-16 animate-spin rounded-full border-2 border-transparent border-t-accent-primary" />
         </div>
         <motion.p

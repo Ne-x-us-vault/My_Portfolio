@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
+import Aurora from "@/components/ui/aurora";
 import ScrollProgress from "@/components/ui/scroll-progress";
 import CommandPalette from "@/components/ui/command-palette";
 import Hero from "@/components/sections/hero";
@@ -26,6 +27,7 @@ export default function Home() {
   return (
     <>
       <Scene />
+      <Aurora />
       <ScrollProgress />
       <Navbar />
       <main className="relative z-10">

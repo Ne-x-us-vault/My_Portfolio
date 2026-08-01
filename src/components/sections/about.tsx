@@ -20,7 +20,7 @@ export default function About() {
   return (
     <section id="about" className="relative py-32">
       <div className="section-container">
-        <SectionHeading title="About Me" subtitle="Building the bridge between hardware and software" />
+        <SectionHeading index={1} title="About Me" subtitle="Building the bridge between hardware and software" />
 
         <div className="grid gap-12 lg:grid-cols-2">
           <motion.div
