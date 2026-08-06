@@ -5,7 +5,7 @@ import { ArrowDown, Github, Linkedin, Mail, Download, Sparkles } from "lucide-re
 import { useEffect, useState } from "react";
 import MagneticButton from "@/components/ui/magnetic-button";
 
-const roles = ["Full Stack Developer", "IoT Engineer", "AI/ML Enthusiast", "Embedded Systems Developer"];
+const roles = ["Full Stack Developer", "Mobile App Developer", "UI/UX Enthusiast", "Software Developer"];
 const TYPING_SPEED = 90;
 const ERASING_SPEED = 45;
 const PAUSE_DURATION = 2200;
@@ -126,7 +126,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="mx-auto max-w-xl text-lg text-gray-400 text-balance"
           >
-            Building intelligent systems from <span className="text-white font-medium">hardware to cloud</span>. I create end-to-end products combining software engineering with real-world hardware.
+            Building modern software — from web apps and mobile experiences to games and open-source tools.
           </motion.p>
 
           <motion.div
@@ -182,21 +182,29 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
           <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-2 text-gray-500"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.5 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2"
           >
-            <span className="text-xs uppercase tracking-widest">Scroll</span>
-            <ArrowDown className="h-4 w-4" />
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="flex flex-col items-center gap-2 text-gray-500"
+            >
+              <span className="text-xs uppercase tracking-widest">Scroll</span>
+              <span className="flex h-9 w-6 items-start justify-center rounded-full border border-white/15 p-1">
+                <motion.span
+                  animate={{ y: [0, 8, 0], opacity: [1, 0.3, 1] }}
+                  transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                  className="h-1.5 w-1 rounded-full bg-accent-primary"
+                />
+              </span>
+            </motion.div>
           </motion.div>
-        </motion.div>
+
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
       </div>
     </section>
   );

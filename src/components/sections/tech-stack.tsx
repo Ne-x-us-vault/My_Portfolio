@@ -12,9 +12,9 @@ export default function TechStack() {
   return (
     <section id="skills" className="relative py-32">
       <div className="section-container">
-        <SectionHeading index={2} title="Tech Stack" subtitle="Technologies I work with to build intelligent systems" />
+        <SectionHeading index={2} title="Tech Stack" subtitle="Technologies I use to build modern software" />
 
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        <div className="mb-12 flex flex-wrap justify-center gap-2">
           {SKILL_CATEGORIES.map((cat) => (
             <button
               key={cat.name}
@@ -35,7 +35,7 @@ export default function TechStack() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
+          className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
         >
           {SKILL_CATEGORIES.find((c) => c.name === activeCategory)?.skills.map((skill, index) => (
             <motion.div
@@ -44,38 +44,20 @@ export default function TechStack() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
             >
-              <GlowCard
-                className="group cursor-default"
-                hover={false}
-              >
+              <GlowCard hover={false} className="group h-full">
                 <div
-                  className="flex items-center gap-4"
+                  className="flex flex-col items-center gap-4 py-2 text-center"
                   style={{ "--skill-color": skill.color } as CSSProperties}
                 >
                   <div
-                    className="skill-tile flex h-12 w-12 items-center justify-center rounded-xl bg-white/5"
+                    className="skill-tile flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.04] border border-white/[0.06]"
                     style={{ color: skill.color }}
                   >
-                    <skill.icon className="h-6 w-6" />
+                    <skill.icon className="h-7 w-7" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-medium text-white text-sm truncate">{skill.name}</h3>
-                    <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/10">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: `${skill.level}%` }}
-                        transition={{ duration: 0.9, delay: 0.2 + index * 0.05, ease: "easeOut" }}
-                        className="h-full rounded-full"
-                        style={{ background: skill.color }}
-                      />
-                    </div>
-                  </div>
-                  <span
-                    className="text-[10px] font-semibold tabular-nums"
-                    style={{ color: skill.color }}
-                  >
-                    {skill.level}%
-                  </span>
+                  <h3 className="text-sm font-medium text-gray-300 transition-colors group-hover:text-white">
+                    {skill.name}
+                  </h3>
                 </div>
               </GlowCard>
             </motion.div>

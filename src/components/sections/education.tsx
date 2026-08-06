@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import SectionHeading from "@/components/ui/section-heading";
 import GlowCard from "@/components/ui/glow-card";
 import { EDUCATION } from "@/lib/data";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, Calendar, ArrowUpRight } from "lucide-react";
 
 export default function Education() {
   return (
@@ -12,40 +12,41 @@ export default function Education() {
       <div className="section-container">
         <SectionHeading index={5} title="Education" subtitle="Academic journey and qualifications" />
 
-        <div className="relative mx-auto max-w-3xl">
-          <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-accent-primary via-accent-secondary to-accent-highlight md:left-1/2 md:-translate-x-[1px]" />
-
+        <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
           {EDUCATION.map((edu, index) => (
             <motion.div
               key={edu.degree}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5 }}
-              className={`relative mb-12 pl-8 md:pl-0 ${
-                index % 2 === 0 ? "md:pr-[calc(50%+2rem)]" : "md:pl-[calc(50%+2rem)]"
-              }`}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+              className="h-full"
             >
-              <div className="absolute left-0 top-1 h-4 w-4 -translate-x-[7px] rounded-full border-2 border-accent-secondary bg-background md:left-1/2 md:-translate-x-[9px]">
-                <div className="absolute inset-0 rounded-full bg-accent-secondary/40 animate-ping" />
-                <div className="absolute inset-0 rounded-full bg-accent-secondary" />
-              </div>
+              <GlowCard className="group relative flex h-full flex-col overflow-hidden">
+                <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-accent-secondary/15 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 
-              <GlowCard>
-                <div className="mb-3 flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-accent-secondary/20 to-accent-highlight/20">
-                    <GraduationCap className="h-4 w-4 text-accent-secondary" />
+                <div className="relative flex items-start justify-between gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-accent-secondary/20 to-accent-highlight/20 transition-all duration-500 group-hover:scale-110 group-hover:from-accent-secondary/30 group-hover:to-accent-highlight/30">
+                    <GraduationCap className="h-5 w-5 text-accent-secondary" />
                   </div>
-                  <span className="rounded-md bg-accent-secondary/10 border border-accent-secondary/20 px-2.5 py-1 text-[10px] font-medium text-accent-secondary">
+                  <span className="flex items-center gap-1.5 rounded-md border border-accent-secondary/20 bg-accent-secondary/10 px-2.5 py-1 text-[10px] font-medium text-accent-secondary">
+                    <Calendar className="h-3 w-3" />
                     {edu.period}
                   </span>
                 </div>
-                <h3 className="font-display text-lg font-semibold text-white">{edu.degree}</h3>
-                <p className="mt-1 text-sm font-medium text-accent-secondary">{edu.institution}</p>
-                {edu.cgpa && (
-                  <p className="mt-2 text-xs text-gray-500">CGPA: {edu.cgpa}</p>
-                )}
-                <p className="mt-3 text-sm text-gray-400 leading-relaxed">{edu.details}</p>
+
+                <div className="relative mt-5 flex-1">
+                  <h3 className="font-display text-lg font-semibold text-white">{edu.degree}</h3>
+                  <p className="mt-1 text-sm font-medium text-accent-secondary">{edu.institution}</p>
+                  {edu.cgpa && (
+                    <p className="mt-2 inline-flex rounded-md bg-white/5 px-2.5 py-1 text-[11px] text-gray-400">
+                      CGPA: {edu.cgpa}
+                    </p>
+                  )}
+                  <p className="mt-3 text-sm leading-relaxed text-gray-400">{edu.details}</p>
+                </div>
+
+                <ArrowUpRight className="absolute bottom-4 right-4 h-4 w-4 text-accent-secondary opacity-0 -translate-x-1 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
               </GlowCard>
             </motion.div>
           ))}

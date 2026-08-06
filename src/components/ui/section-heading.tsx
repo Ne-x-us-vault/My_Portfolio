@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface SectionHeadingProps {
   title: string;
@@ -23,7 +24,7 @@ export default function SectionHeading({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`mb-16 ${centered ? "text-center" : ""} ${className || ""}`}
+      className={cn("mb-16", centered && "text-center", className)}
     >
       {index !== undefined && (
         <div className={`mb-5 flex items-center gap-4 ${centered ? "justify-center" : ""}`}>

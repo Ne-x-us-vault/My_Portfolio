@@ -3,19 +3,19 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jaswa.dev"),
-  title: "Jaswa J.R | Full Stack Developer & IoT Engineer",
+  title: "Jaswa J.R | Full Stack Developer & Software Engineer",
   description:
-    "Full Stack Developer, IoT Engineer, AI/ML Enthusiast, and Embedded Systems Developer. Building intelligent systems from hardware to cloud. Open to opportunities.",
+    "Full Stack Developer and Software Engineer building modern web, mobile, and open-source tools. Open to opportunities.",
   keywords: [
     "Jaswa J.R",
     "Full Stack Developer",
-    "IoT Engineer",
-    "AI/ML",
-    "Embedded Systems",
+    "Mobile App Developer",
+    "UI/UX",
+    "Software Engineer",
+    "Next.js",
     "React",
     "Node.js",
-    "Python",
-    "ESP32",
+    "TypeScript",
     "Portfolio",
     "Coimbatore",
     "Tamil Nadu",
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://jaswa.dev",
     siteName: "Jaswa J.R Portfolio",
-    title: "Jaswa J.R | Full Stack Developer & IoT Engineer",
+    title: "Jaswa J.R | Full Stack Developer & Software Engineer",
     description:
-      "Building intelligent systems from hardware to cloud. Full Stack Developer, IoT Engineer, AI/ML Enthusiast.",
+      "Building modern software — from web apps and mobile experiences to games and open-source tools.",
     images: [
       {
         url: "/og-image.png",
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jaswa J.R | Full Stack Developer & IoT Engineer",
+    title: "Jaswa J.R | Full Stack Developer & Software Engineer",
     description:
-      "Building intelligent systems from hardware to cloud.",
+      "Building modern software — from web apps and mobile experiences to games and open-source tools.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -66,7 +66,7 @@ const jsonLd = {
   name: "Jaswa J.R",
   jobTitle: "Full Stack Developer",
   description:
-    "Full Stack Developer, IoT Engineer, AI/ML Enthusiast, and Embedded Systems Developer.",
+    "Full Stack Developer and Software Engineer building modern web, mobile, and open-source tools.",
   url: "https://jaswa.dev",
   address: {
     "@type": "PostalAddress",
@@ -76,18 +76,19 @@ const jsonLd = {
   },
   sameAs: [
     "https://github.com/Ne-x-us-vault",
-    "https://linkedin.com/in/jaswa-j-r",
+    "https://www.linkedin.com/in/jaswa-j-r/",
   ],
   knowsAbout: [
     "Full Stack Development",
-    "IoT",
-    "Embedded Systems",
-    "Artificial Intelligence",
-    "Machine Learning",
+    "Mobile App Development",
+    "UI/UX Design",
+    "Software Engineering",
+    "Game Development",
     "React",
+    "Next.js",
     "Node.js",
-    "Python",
-    "ESP32",
+    "TypeScript",
+    "PostgreSQL",
   ],
 };
 

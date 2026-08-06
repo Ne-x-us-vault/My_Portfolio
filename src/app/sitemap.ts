@@ -11,11 +11,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     ...[
-      "maternal-guard",
-      "smart-water-monitoring",
-      "ai-plant-disease-detection",
-      "telecura",
-      "fullstack-crud",
+      "nexus-axis",
+      "tether",
+      "nexus-launcher",
+      "my-portfolio",
     ].map((slug) => ({
       url: `${baseUrl}/projects/${slug}`,
       lastModified: new Date(),

@@ -6,31 +6,58 @@ import * as THREE from "three";
 
 export default function Particles() {
   const mesh = useRef<THREE.Points>(null);
-  const count = 2000;
+  const count = 3000;
 
-  const geo = useMemo(() => {
-    const positions = new Float32Array(count * 3);
+  const [positions, colors] = useMemo(() => {
+    const pos = new Float32Array(count * 3);
+    const cols = new Float32Array(count * 3);
+    const color = new THREE.Color();
+    
     for (let i = 0; i < count; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 50;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 50;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 50;
+      pos[i * 3] = (Math.random() - 0.5) * 60;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 60;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 60;
+
+      const mixedColor = Math.random() > 0.5 ? "#3B82F6" : "#06B6D4";
+      color.set(mixedColor);
+      cols[i * 3] = color.r;
+      cols[i * 3 + 1] = color.g;
+      cols[i * 3 + 2] = color.b;
     }
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    return geometry;
+    return [pos, cols];
   }, []);
 
   useFrame((state) => {
     if (!mesh.current) return;
-    mesh.current.rotation.y = state.clock.elapsedTime * 0.02;
-    mesh.current.rotation.x = state.clock.elapsedTime * 0.01;
+    mesh.current.rotation.y = state.clock.elapsedTime * 0.015;
+    mesh.current.rotation.x = state.clock.elapsedTime * 0.008;
+    
+    // Subtle breathing effect
+    const s = 1 + Math.sin(state.clock.elapsedTime * 0.5) * 0.05;
+    mesh.current.scale.set(s, s, s);
   });
 
   return (
-    <points ref={mesh} geometry={geo}>
+    <points ref={mesh}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          args={[positions, 3]}
+          count={count}
+          array={positions}
+          itemSize={3}
+        />
+        <bufferAttribute
+          attach="attributes-color"
+          args={[colors, 3]}
+          count={count}
+          array={colors}
+          itemSize={3}
+        />
+      </bufferGeometry>
       <pointsMaterial
-        size={0.05}
-        color="#3B82F6"
+        size={0.08}
+        vertexColors
         transparent
         opacity={0.6}
         sizeAttenuation
