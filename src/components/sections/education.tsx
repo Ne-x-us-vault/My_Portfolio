@@ -8,7 +8,7 @@ import { GraduationCap, Calendar, ArrowUpRight } from "lucide-react";
 
 export default function Education() {
   return (
-    <section id="education" className="relative py-32">
+    <section id="education" className="relative py-20 md:py-28 lg:py-32">
       <div className="section-container">
         <SectionHeading index={5} title="Education" subtitle="Academic journey and qualifications" />
 

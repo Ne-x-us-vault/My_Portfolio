@@ -186,7 +186,7 @@ export default function Projects() {
   const [featured, ...rest] = PROJECTS;
 
   return (
-    <section id="projects" className="relative py-32">
+    <section id="projects" className="relative py-20 md:py-28 lg:py-32">
       <div className="section-container">
         <SectionHeading index={3} title="Projects" subtitle="Selected work showcasing my technical capabilities" />
 

@@ -3,19 +3,23 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jaswa.dev"),
-  title: "Jaswa J.R | Full Stack Developer & Software Engineer",
+  title: "Jaswa J.R | Application Developer & UI/UX",
   description:
-    "Full Stack Developer and Software Engineer building modern web, mobile, and open-source tools. Open to opportunities.",
+    "M.Tech CSE student and application developer building across mobile apps, UI/UX, and embedded systems — with a growing focus on robotics and DevOps. Open to opportunities.",
   keywords: [
     "Jaswa J.R",
-    "Full Stack Developer",
+    "Application Developer",
     "Mobile App Developer",
     "UI/UX",
+    "Embedded Systems",
+    "Robotics",
+    "DevOps",
     "Software Engineer",
     "Next.js",
     "React",
     "Node.js",
     "TypeScript",
+    "Kotlin",
     "Portfolio",
     "Coimbatore",
     "Tamil Nadu",
@@ -28,9 +32,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://jaswa.dev",
     siteName: "Jaswa J.R Portfolio",
-    title: "Jaswa J.R | Full Stack Developer & Software Engineer",
+    title: "Jaswa J.R | Application Developer & UI/UX",
     description:
-      "Building modern software — from web apps and mobile experiences to games and open-source tools.",
+      "Building across mobile apps, UI/UX, and embedded systems — with a growing focus on robotics and DevOps.",
     images: [
       {
         url: "/og-image.png",
@@ -42,9 +46,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jaswa J.R | Full Stack Developer & Software Engineer",
+    title: "Jaswa J.R | Application Developer & UI/UX",
     description:
-      "Building modern software — from web apps and mobile experiences to games and open-source tools.",
+      "Building across mobile apps, UI/UX, and embedded systems — with a growing focus on robotics and DevOps.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -64,9 +68,9 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Jaswa J.R",
-  jobTitle: "Full Stack Developer",
+  jobTitle: "Application Developer",
   description:
-    "Full Stack Developer and Software Engineer building modern web, mobile, and open-source tools.",
+    "M.Tech CSE student and application developer building across mobile apps, UI/UX, and embedded systems, with a growing focus on robotics and DevOps.",
   url: "https://jaswa.dev",
   address: {
     "@type": "PostalAddress",
@@ -79,15 +83,17 @@ const jsonLd = {
     "https://www.linkedin.com/in/jaswa-j-r/",
   ],
   knowsAbout: [
-    "Full Stack Development",
+    "Application Development",
     "Mobile App Development",
     "UI/UX Design",
-    "Software Engineering",
-    "Game Development",
+    "Embedded Systems",
+    "Robotics",
+    "DevOps",
     "React",
     "Next.js",
     "Node.js",
     "TypeScript",
+    "Kotlin",
     "PostgreSQL",
   ],
 };

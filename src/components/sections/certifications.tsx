@@ -8,7 +8,7 @@ import { Award, ArrowUpRight } from "lucide-react";
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="relative py-32">
+    <section id="certifications" className="relative py-20 md:py-28 lg:py-32">
       <div className="section-container">
         <SectionHeading index={6} title="Certifications" subtitle="Professional certifications and memberships" />
 

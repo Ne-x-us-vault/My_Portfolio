@@ -11,6 +11,7 @@ import {
   Users,
   Target,
   Music,
+  Zap,
 } from "lucide-react";
 
 const iconMap: Record<string, typeof Crown> = {
@@ -20,11 +21,12 @@ const iconMap: Record<string, typeof Crown> = {
   teaching: Users,
   strategy: Target,
   music: Music,
+  hackathon: Zap,
 };
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="relative py-32">
+    <section id="achievements" className="relative py-20 md:py-28 lg:py-32">
       <div className="section-container">
         <SectionHeading index={7} title="Achievements" subtitle="Skills and accomplishments beyond academics" />
 

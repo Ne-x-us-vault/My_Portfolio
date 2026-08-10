@@ -5,7 +5,13 @@ import { ArrowDown, Github, Linkedin, Mail, Download, Sparkles } from "lucide-re
 import { useEffect, useState } from "react";
 import MagneticButton from "@/components/ui/magnetic-button";
 
-const roles = ["Full Stack Developer", "Mobile App Developer", "UI/UX Enthusiast", "Software Developer"];
+const roles = [
+  "Application Developer",
+  "Mobile App Developer",
+  "UI/UX Designer",
+  "Embedded & Robotics",
+  "DevOps Enthusiast",
+];
 const TYPING_SPEED = 90;
 const ERASING_SPEED = 45;
 const PAUSE_DURATION = 2200;
@@ -45,13 +51,13 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      <div className="section-container relative z-10 text-center">
+    <section id="hero" className="relative flex min-h-[100svh] items-center justify-center overflow-hidden">
+      <div className="section-container relative z-10 w-full py-28 sm:py-32">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col items-center gap-8"
+          className="flex flex-col items-center gap-6 text-center sm:gap-8"
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -73,9 +79,9 @@ export default function Hero() {
             className="relative"
           >
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent-primary via-accent-secondary to-accent-highlight blur-xl opacity-40 animate-pulse-glow" />
-            <div className="relative h-28 w-28 rounded-full bg-gradient-to-br from-accent-primary via-accent-secondary to-accent-highlight p-[2px]">
+            <div className="relative h-24 w-24 rounded-full bg-gradient-to-br from-accent-primary via-accent-secondary to-accent-highlight p-[2px] sm:h-28 sm:w-28">
               <div className="flex h-full w-full items-center justify-center rounded-full bg-background">
-                <span className="font-display text-3xl font-bold gradient-text">JR</span>
+                <span className="font-display text-2xl font-bold gradient-text sm:text-3xl">JR</span>
               </div>
             </div>
             <div className="absolute -inset-3 rounded-full border border-dashed border-accent-primary/25 animate-spin-slow" />
@@ -92,7 +98,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-sm font-medium uppercase tracking-[0.3em] text-accent-primary"
+              className="text-xs font-medium uppercase tracking-[0.3em] text-accent-primary sm:text-sm"
             >
               Hello, I&apos;m
             </motion.p>
@@ -100,7 +106,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="font-display text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
+              className="font-display text-[2.75rem] font-bold leading-none tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
             >
               <span className="text-white">Jaswa </span>
               <span className="gradient-text">J.R</span>
@@ -111,9 +117,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex items-center gap-3 font-medium text-xl text-gray-300 sm:text-2xl"
+            className="flex items-center gap-3 font-medium text-lg text-gray-300 sm:text-2xl"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-primary/10 text-accent-primary">
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent-primary/10 text-accent-primary sm:h-8 sm:w-8">
               <Sparkles className="h-4 w-4" />
             </span>
             <span className="min-h-[1.4em]">{typed}</span>
@@ -124,32 +130,33 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="mx-auto max-w-xl text-lg text-gray-400 text-balance"
+            className="mx-auto max-w-xl text-balance text-base text-gray-400 sm:text-lg"
           >
-            Building modern software — from web apps and mobile experiences to games and open-source tools.
+            Building across mobile apps, UI/UX, and embedded systems — with a growing focus on
+            robotics and DevOps.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex flex-wrap items-center justify-center gap-4"
+            className="flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4"
           >
-            <MagneticButton>
+            <MagneticButton className="w-full sm:w-auto">
               <button
                 onClick={scrollToProjects}
-                className="group relative flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-accent-primary to-accent-secondary px-8 py-3.5 text-sm font-medium text-white shadow-lg shadow-accent-primary/25 transition-all hover:shadow-accent-primary/40 hover:scale-[1.02] active:scale-[0.98]"
+                className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-accent-primary to-accent-secondary px-8 py-3.5 text-sm font-medium text-white shadow-lg shadow-accent-primary/25 transition-all hover:shadow-accent-primary/40 hover:scale-[1.02] active:scale-[0.98] sm:w-auto"
               >
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
                 View My Work
                 <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
               </button>
             </MagneticButton>
-            <MagneticButton>
+            <MagneticButton className="w-full sm:w-auto">
               <a
                 href="/resume.pdf"
                 target="_blank"
-                className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-8 py-3.5 text-sm font-medium text-white transition-all hover:bg-white/10 hover:border-white/20 hover:-translate-y-0.5"
+                className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-8 py-3.5 text-sm font-medium text-white transition-all hover:bg-white/10 hover:border-white/20 hover:-translate-y-0.5 sm:w-auto"
               >
                 <Download className="h-4 w-4" />
                 Resume
@@ -186,7 +193,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.5 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2"
+            className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 sm:block"
           >
             <motion.div
               animate={{ y: [0, 10, 0] }}

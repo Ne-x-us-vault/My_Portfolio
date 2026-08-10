@@ -10,16 +10,16 @@ export default function TechStack() {
   const [activeCategory, setActiveCategory] = useState(SKILL_CATEGORIES[0].name);
 
   return (
-    <section id="skills" className="relative py-32">
+    <section id="skills" className="relative py-20 md:py-28 lg:py-32">
       <div className="section-container">
         <SectionHeading index={2} title="Tech Stack" subtitle="Technologies I use to build modern software" />
 
-        <div className="mb-12 flex flex-wrap justify-center gap-2">
+        <div className="mb-12 -mx-4 flex flex-nowrap gap-2 overflow-x-auto px-4 pb-3 sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0 sm:pb-0">
           {SKILL_CATEGORIES.map((cat) => (
             <button
               key={cat.name}
               onClick={() => setActiveCategory(cat.name)}
-              className={`rounded-xl px-5 py-2.5 text-sm font-medium transition-all ${
+              className={`whitespace-nowrap rounded-xl px-5 py-2.5 text-sm font-medium transition-all ${
                 activeCategory === cat.name
                   ? "bg-accent-primary/10 text-accent-primary border border-accent-primary/30 shadow-lg shadow-accent-primary/10"
                   : "text-gray-400 hover:text-white hover:bg-white/5 border border-transparent"

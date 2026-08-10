@@ -12,29 +12,30 @@ import {
 } from "lucide-react";
 
 const stats = [
-  { value: "5+", label: "Years Building" },
+  { value: "4+", label: "Years Building" },
   { value: "20+", label: "Team Members Led" },
   { value: "85%", label: "Pass Rate Achieved" },
-  { value: "10+", label: "Technologies" },
+  { value: "15+", label: "Technologies" },
 ];
 
 const focusAreas = [
-  "Full Stack Development",
-  "Mobile Apps",
-  "IoT & AI/ML",
-  "Game & Desktop",
+  "DevOps & Mobile Apps",
+  "AI & ML in EdTech",
+  "UI/UX Design",
+  "Robotics & Embedded",
+  "R&D & Rapid Prototyping",
 ];
 
 const quickFacts = [
   { icon: MapPin, label: "Location", value: "Coimbatore, India" },
   { icon: GraduationCap, label: "Degree", value: "Integrated M.Tech CSE" },
-  { icon: Briefcase, label: "Role", value: "Founder & Full Stack Dev" },
+  { icon: Briefcase, label: "Role", value: "App Developer · UI/UX" },
   { icon: BadgeCheck, label: "Status", value: "Open to opportunities" },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="relative py-32">
+    <section id="about" className="relative py-20 md:py-28 lg:py-32">
       <div className="section-container">
         <div className="grid gap-16 lg:grid-cols-5 lg:gap-16">
           <motion.div
@@ -54,17 +55,15 @@ export default function About() {
 
             <div className="space-y-5 text-[15px] leading-relaxed text-gray-400">
               <p>
-                I&apos;m an <span className="font-medium text-white">Integrated M.Tech Computer Science</span>{" "}
-                student in Coimbatore, Tamil Nadu, India. I&apos;m passionate about{" "}
-                <span className="font-medium text-accent-primary">software engineering</span>,{" "}
-                <span className="font-medium text-accent-highlight">mobile app development</span>, and
-                building polished, user-focused products.
+                I&apos;m an <span className="font-medium text-white">Integrated M.Tech CSE</span> student
+                in Coimbatore, Tamil Nadu — an <span className="font-medium text-accent-primary">application developer</span>{" "}
+                and <span className="font-medium text-accent-highlight">UI/UX designer</span> who builds
+                across mobile apps, UI/UX, and embedded systems, with a growing focus on robotics and DevOps.
               </p>
               <p>
-                I enjoy building complete end-to-end products — from full stack web applications and
-                mobile experiences to desktop extensions and game-based tools. My projects combine clean
-                architecture, modern frameworks, and thoughtful UI/UX to create software people actually
-                want to use.
+                I favor <span className="font-medium text-white">practical, bolt-on solutions</span> over
+                full system rebuilds — extending what already works instead of replacing it. And I work
+                fastest under a deadline: most of my shipped projects started as hackathon builds.
               </p>
               <p>
                 Beyond technology, I&apos;m a <span className="font-medium text-white">founder and entrepreneur</span>,
@@ -126,7 +125,7 @@ export default function About() {
                 </div>
                 <div>
                   <h3 className="font-display text-xl font-semibold text-white">Jaswa J.R</h3>
-                  <p className="mt-0.5 text-sm text-gray-400">Full Stack Developer & Engineer</p>
+                  <p className="mt-0.5 text-sm text-gray-400">Application Developer · UI/UX</p>
                   <div className="mt-2 flex items-center gap-2">
                     <span className="relative flex h-2 w-2">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />

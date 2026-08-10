@@ -37,7 +37,7 @@ export default function Footer() {
               <span className="text-white">R</span>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-gray-500">
-              Full Stack Developer & Software Engineer building modern web, mobile, and
+              Application developer & UI/UX designer building across mobile, web, embedded, and
               open-source tools.
             </p>
             <div className="mt-6 flex items-center gap-3">

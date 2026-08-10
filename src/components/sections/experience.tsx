@@ -15,7 +15,7 @@ export default function Experience() {
   ];
 
   return (
-    <section id="experience" className="relative py-32">
+    <section id="experience" className="relative py-20 md:py-28 lg:py-32">
       <div className="section-container">
         <SectionHeading index={4} title="Experience" subtitle="Entrepreneurial and professional experience" />
 

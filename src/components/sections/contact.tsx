@@ -28,7 +28,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-32">
+    <section id="contact" className="relative py-20 md:py-28 lg:py-32">
       <div className="section-container">
         <SectionHeading index={8} title="Get In Touch" subtitle="Let's build something amazing together" />
 

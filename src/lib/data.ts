@@ -32,6 +32,11 @@ import {
   SiRust,
   SiTauri,
   SiGnome,
+  SiKotlin,
+  SiNestjs,
+  SiAndroidstudio,
+  SiYaml,
+  SiJson,
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 import type { ComponentType } from "react";
@@ -54,12 +59,14 @@ export const SOCIAL_LINKS = [
 
 export const SKILL_CATEGORIES = [
   {
-    name: "Frontend",
+    name: "Mobile & Frontend",
     skills: [
       { name: "React", icon: SiReact, color: "#61DAFB", level: 95 },
       { name: "Next.js", icon: SiNextdotjs, color: "#FFFFFF", level: 88 },
       { name: "TypeScript", icon: SiTypescript, color: "#3178C6", level: 88 },
       { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E", level: 92 },
+      { name: "Kotlin", icon: SiKotlin, color: "#7F52FF", level: 75 },
+      { name: "Android Studio", icon: SiAndroidstudio, color: "#3DDC84", level: 80 },
       { name: "HTML5", icon: SiHtml5, color: "#E34F26", level: 95 },
       { name: "CSS3", icon: SiCss, color: "#1572B6", level: 90 },
       { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4", level: 90 },
@@ -70,9 +77,11 @@ export const SKILL_CATEGORIES = [
     skills: [
       { name: "Node.js", icon: SiNodedotjs, color: "#339933", level: 88 },
       { name: "Express", icon: SiExpress, color: "#FFFFFF", level: 85 },
+      { name: "NestJS", icon: SiNestjs, color: "#E0234E", level: 78 },
       { name: "Socket.IO", icon: SiSocketdotio, color: "#FFFFFF", level: 78 },
       { name: "Python", icon: SiPython, color: "#3776AB", level: 90 },
       { name: "Flask", icon: SiFlask, color: "#FFFFFF", level: 82 },
+      { name: "FastAPI", icon: SiFastapi, color: "#009688", level: 80 },
       { name: "Prisma", icon: SiPrisma, color: "#2D3748", level: 75 },
       { name: "REST APIs", icon: SiGooglecloud, color: "#4285F4", level: 90 },
     ],
@@ -110,6 +119,7 @@ export const SKILL_CATEGORIES = [
       { name: "Docker", icon: SiDocker, color: "#2496ED", level: 75 },
       { name: "Git", icon: SiGit, color: "#F05032", level: 90 },
       { name: "Linux", icon: SiLinux, color: "#FCC624", level: 82 },
+      { name: "YAML", icon: SiYaml, color: "#CB171E", level: 78 },
     ],
   },
   {
@@ -126,11 +136,40 @@ export const SKILL_CATEGORIES = [
       { name: "C", icon: SiC, color: "#A8B9CC", level: 85 },
       { name: "C++", icon: SiCplusplus, color: "#00599C", level: 85 },
       { name: "Java", icon: FaJava, color: "#ED8B00", level: 75 },
+      { name: "JSON", icon: SiJson, color: "#000000", level: 92 },
     ],
   },
 ];
 
 export const PROJECTS: Project[] = [
+  {
+    slug: "nexus-launcher",
+    title: "Nexus Launcher",
+    shortDescription: "Frost-glass, keyboard-first GNOME Shell launcher",
+    description:
+      "An open-source GNOME Shell extension (v1.0.0, MIT) providing a frost-glass application launcher with instant app search, arrow-key navigation, quick actions for Terminal, Files, GitHub and LinkedIn, and configurable hotkeys and opacity — supporting GNOME Shell 45–50 on Wayland and Xorg.",
+    techStack: ["JavaScript", "GJS", "GNOME Shell", "GTK", "Clutter", "Linux"],
+    category: "Open Source",
+    image: "/projects/nexus-launcher.jpg",
+    github: "https://github.com/Ne-x-us-vault/custom-launcher-nexus",
+    challenges: [
+      "Building fast, ranked search across installed applications",
+      "Full keyboard-first navigation within GNOME's St API",
+      "Supporting GNOME Shell 45 through 50 on Wayland and Xorg",
+    ],
+    solutions: [
+      "Ranked search over name, description, executable and keywords",
+      "Frost-glass overlay with dimmed backdrop and click-outside close",
+      "Configurable hotkey, opacity and quick-action destinations",
+    ],
+    impact: "A production-quality open-source extension that streamlines app launching for GNOME users.",
+    features: [
+      "Instant ranked app search",
+      "Keyboard-first controls (Super + Enter, arrows, Tab)",
+      "Quick actions: Terminal, Files, GitHub, LinkedIn",
+      "Configurable hotkey and opacity",
+    ],
+  },
   {
     slug: "nexus-axis",
     title: "Nexus Axis",
@@ -185,34 +224,6 @@ export const PROJECTS: Project[] = [
       "Shared calendar and task assignments",
       "Finance tracking with monthly and category filters",
       "Bill splitting with live balances and settle-ups",
-    ],
-  },
-  {
-    slug: "nexus-launcher",
-    title: "Nexus Launcher",
-    shortDescription: "Frost-glass, keyboard-first GNOME Shell launcher",
-    description:
-      "An open-source GNOME Shell extension (v1.0.0, MIT) providing a frost-glass application launcher with instant app search, arrow-key navigation, quick actions for Terminal, Files, GitHub and LinkedIn, and configurable hotkeys and opacity — supporting GNOME Shell 45–50 on Wayland and Xorg.",
-    techStack: ["JavaScript", "GJS", "GNOME Shell", "GTK", "Clutter", "Linux"],
-    category: "Open Source",
-    image: "/projects/nexus-launcher.jpg",
-    github: "https://github.com/Ne-x-us-vault/custom-launcher-nexus",
-    challenges: [
-      "Building fast, ranked search across installed applications",
-      "Full keyboard-first navigation within GNOME's St API",
-      "Supporting GNOME Shell 45 through 50 on Wayland and Xorg",
-    ],
-    solutions: [
-      "Ranked search over name, description, executable and keywords",
-      "Frost-glass overlay with dimmed backdrop and click-outside close",
-      "Configurable hotkey, opacity and quick-action destinations",
-    ],
-    impact: "A production-quality open-source extension that streamlines app launching for GNOME users.",
-    features: [
-      "Instant ranked app search",
-      "Keyboard-first controls (Super + Enter, arrows, Tab)",
-      "Quick actions: Terminal, Files, GitHub, LinkedIn",
-      "Configurable hotkey and opacity",
     ],
   },
   {
@@ -316,10 +327,10 @@ export const CERTIFICATIONS = [
 
 export const ACHIEVEMENTS = [
   {
-    title: "Leadership",
+    title: "Hackathon Builder",
     description:
-      "Led a team of 20+ students as Founder & Managing Director of JR Tunes, demonstrating organizational and people management skills.",
-    icon: "leadership",
+      "Most of my shipped projects started as hackathon builds — I work fastest under a deadline and turn rapid prototypes into polished products.",
+    icon: "hackathon",
   },
   {
     title: "Entrepreneurship",
@@ -330,19 +341,19 @@ export const ACHIEVEMENTS = [
   {
     title: "Problem Solving",
     description:
-      "Solved complex engineering challenges combining hardware and software, from biomedical sensors to AI systems.",
+      "Solved complex engineering challenges combining hardware and software, from embedded systems to AI and robotics.",
     icon: "problem-solving",
   },
   {
-    title: "Teaching & Mentoring",
+    title: "Leadership",
     description:
-      "Trained 20+ students in music and technology, with an 85%+ success rate in professional examinations.",
-    icon: "teaching",
+      "Led a team of 20+ students as Founder & Managing Director of JR Tunes, demonstrating organizational and people management skills.",
+    icon: "leadership",
   },
   {
-    title: "Strategic Thinking",
+    title: "Bolt-on Engineering",
     description:
-      "Developed and executed business strategies that grew JR Tunes into a respected music education institution.",
+      "I favor practical, bolt-on solutions over full system rebuilds — extending existing systems with minimal disruption.",
     icon: "strategy",
   },
   {
@@ -387,5 +398,10 @@ export const SKILL_ICONS: Record<string, ComponentType<{ className?: string }>> 
   SiRust,
   SiTauri,
   SiGnome,
+  SiKotlin,
+  SiNestjs,
+  SiAndroidstudio,
+  SiYaml,
+  SiJson,
   FaJava,
 };
