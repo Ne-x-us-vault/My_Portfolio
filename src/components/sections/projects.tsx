@@ -18,11 +18,11 @@ export default function Projects() {
               <span className="h-px w-6 bg-white/15" /> Selected work — 04
               <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[9px] tracking-[0.12em] text-white/40">2023 — 2026</span>
             </p>
-            <h2 className="display-serif mt-3 text-[34px] tracking-[-0.03em] sm:text-[48px]">
+            <h2 className="display-serif mt-3 text-[32px] tracking-[-0.03em] sm:text-[42px]">
               Products that <span className="italic font-light text-white/65">ship</span>.
             </h2>
           </div>
-          <p className="max-w-[360px] text-[13px] leading-relaxed text-white/40">
+          <p className="max-w-[360px] text-[13.5px] leading-[1.6] text-white/40">
             Four real products — from GNOME shell to Tauri games to full-stack social OS. Hover to preview. Built fast, polished with care.
           </p>
         </div>
@@ -42,11 +42,11 @@ export default function Projects() {
                   <div className="flex gap-4">
                     <span className={`mt-1 font-mono text-[11px] tracking-[0.14em] ${hovered === p.slug ? "text-white/60" : "text-white/22"}`}>0{i + 1}</span>
                     <div>
-                      <h3 className="display-serif flex items-center gap-2 text-[20px] leading-none tracking-[-0.02em] sm:text-[22px]">
+                      <h3 className="display-serif flex items-center gap-2 text-[19px] leading-none tracking-[-0.02em] sm:text-[20px]">
                         {p.title}
                         {i === 0 && <span className="rounded-full bg-[#7A7CFF] px-2 py-0.5 font-mono text-[9px] tracking-[0.12em] text-white">Featured</span>}
                       </h3>
-                      <p className="mt-1.5 max-w-[440px] text-[13px] leading-relaxed text-white/48">{p.shortDescription}</p>
+                      <p className="mt-1.5 max-w-[440px] text-[13.5px] leading-[1.6] text-white/48">{p.shortDescription}</p>
                       <div className="mt-3 flex flex-wrap gap-1.5">
                         {p.techStack.slice(0, 4).map((t) => (
                           <span key={t} className={`rounded-full px-2.5 py-1 font-mono text-[10px] tracking-[0.09em] ${hovered === p.slug ? "bg-white text-black" : "bg-white/10 text-white/60"}`}>

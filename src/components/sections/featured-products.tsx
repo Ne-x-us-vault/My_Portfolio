@@ -17,7 +17,7 @@ export default function FeaturedProducts() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="label-mono">Featured — curated placeholders</p>
-            <h2 className="display-serif mt-2 text-[24px] tracking-[-0.02em]">Made to browse, built to ship</h2>
+            <h2 className="display-serif mt-2 text-[22px] tracking-[-0.02em]">Made to browse, built to ship</h2>
           </div>
           <div className="flex items-center gap-2">
             <button onClick={() => setI((p) => (p - 1 + cards.length) % cards.length)} data-cursor="hover" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 backdrop-blur hover:bg-white hover:text-black">

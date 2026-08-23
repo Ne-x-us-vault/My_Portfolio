@@ -37,7 +37,7 @@ export default function Services() {
             <p className="label-mono">Services — 03 capabilities</p>
             <h2 className="display-serif mt-3 text-[30px] tracking-[-0.03em] sm:text-[36px]">What I do best</h2>
           </div>
-          <p className="max-w-[340px] text-[13px] leading-relaxed text-white/40">Each engagement is product-minded — discovery, design, ship, iterate. No fluff, just outcomes.</p>
+          <p className="max-w-[360px] text-[13.5px] leading-[1.65] text-white/40">Each engagement is product-minded — discovery, design, ship, iterate. No fluff, just outcomes.</p>
         </div>
 
         <div className="mt-8 grid gap-4 lg:grid-cols-3">
@@ -51,7 +51,7 @@ export default function Services() {
                 <span className="font-mono text-[11px] tracking-[0.14em] text-white/20">— {s.n}</span>
               </div>
               <h3 className="display-serif relative mt-5 text-[20px] tracking-[-0.02em]">{s.t}</h3>
-              <p className="relative mt-2 text-[13px] leading-relaxed text-white/45">{s.d}</p>
+              <p className="relative mt-2 text-[13.5px] leading-[1.6] text-white/45">{s.d}</p>
               <ul className="relative mt-6 space-y-2.5">
                 {s.pts.map((p) => (
                   <li key={p} className="flex items-center gap-2 text-[13px] text-white/65">

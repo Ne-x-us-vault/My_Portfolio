@@ -7,7 +7,7 @@ export default function Certifications() {
     <section className="relative py-10">
       <div className="container-premium">
         <div className="flex items-center justify-between">
-          <h2 className="display-serif text-[22px] tracking-[-0.02em]">Awards & Certifications</h2>
+          <h2 className="display-serif text-[21px] tracking-[-0.02em]">Awards & Certifications</h2>
           <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[10px] tracking-[0.10em] text-white/30">05 · SINCE 2023</span>
         </div>
         <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

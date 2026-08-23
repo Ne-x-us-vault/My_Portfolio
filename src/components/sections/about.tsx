@@ -14,7 +14,7 @@ export default function About() {
               Designer & <span className="italic font-light text-white/70">developer</span> obsessed
               <br /> with shipping.
             </h2>
-            <div className="mt-6 space-y-4 text-[14px] leading-relaxed text-white/55">
+            <div className="mt-6 space-y-3.5 text-[14px] leading-[1.65] text-white/55">
               <p>
                 I&apos;m <span className="font-semibold text-white">Jaswa J.R</span> — Integrated M.Tech CSE, Coimbatore. I live at the intersection of mobile, web and embedded — now leaning into robotics & DevOps.
               </p>

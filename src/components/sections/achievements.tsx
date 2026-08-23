@@ -12,7 +12,7 @@ export default function Achievements() {
     <section className="relative py-10">
       <div className="container-premium">
         <div className="flex items-center justify-between">
-          <h2 className="display-serif text-[22px] tracking-[-0.02em]">Trusted by founders</h2>
+          <h2 className="display-serif text-[21px] tracking-[-0.02em]">Trusted by founders</h2>
           <span className="font-mono text-[10px] tracking-[0.10em] text-white/25">03 TESTIMONIALS · DUMMY — REPLACE WHEN READY</span>
         </div>
 
@@ -24,7 +24,7 @@ export default function Achievements() {
               <div className="mt-5 flex items-center gap-3 border-t border-white/5 pt-4">
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[11px] font-bold text-black">{t.a}</span>
                 <div>
-                  <p className="text-[13px] font-medium tracking-[-0.01em]">{t.n}</p>
+                  <p className="text-[14px] font-medium tracking-[-0.01em]">{t.n}</p>
                   <p className="font-mono text-[10px] tracking-[0.08em] text-white/30">{t.r}</p>
                 </div>
                 <span className="ml-auto text-[11px] text-amber-400">★★★★★</span>
@@ -37,7 +37,7 @@ export default function Achievements() {
           {ACHIEVEMENTS.slice(0, 3).map((a) => (
             <div key={a.title} className="glass rounded-[18px] p-6">
               <p className="display-serif text-[16px] tracking-[-0.02em]">{a.title}</p>
-              <p className="mt-2 text-[13px] leading-relaxed text-white/40">{a.description}</p>
+              <p className="mt-2 text-[14px] leading-relaxed text-white/40">{a.description}</p>
             </div>
           ))}
         </div>

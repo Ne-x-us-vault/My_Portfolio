@@ -17,7 +17,7 @@ export default function Hero() {
               <span className="font-mono text-[10px] tracking-[0.14em] text-white/70">INTEGRATED M.TECH CSE · COIMBATORE, IN — AVAILABLE FOR WORK</span>
             </motion.div>
 
-            <motion.h1 initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75, delay: 0.08 }} className="display-serif mt-6 text-[42px] leading-[0.86] tracking-[-0.045em] text-white sm:text-[62px] lg:text-[78px]">
+            <motion.h1 initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75, delay: 0.08 }} className="display-serif mt-6 text-[42px] leading-[0.88] tracking-[-0.04em] text-white sm:text-[58px] lg:text-[72px]">
               Application <span className="italic font-light text-white/85">developer</span>
               <br />
               <span className="text-white">crafting clear,</span>
@@ -25,7 +25,7 @@ export default function Hero() {
               <span className="bg-gradient-to-r from-[#7A7CFF] via-[#8b8fff] to-[#00D9FF] bg-clip-text text-transparent">human</span> products.
             </motion.h1>
 
-            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.18 }} className="mt-6 max-w-[540px] text-[15px] leading-relaxed text-white/55 sm:text-[16px]">
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.18 }} className="mt-6 max-w-[520px] text-[15px] leading-[1.65] text-white/55 sm:text-[16px]">
               I build across mobile, web, and embedded — with a growing focus on robotics & DevOps. Bolt-on over rebuild. Fastest under a deadline — most shipped work started as a hackathon.
             </motion.p>
 
