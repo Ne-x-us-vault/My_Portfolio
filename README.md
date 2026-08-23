@@ -1,4 +1,4 @@
-# Jaswa J.R - Portfolio
+# Jaswa J.R — Portfolio
 
 A premium, immersive personal portfolio website built with Next.js 15, React Three Fiber, and Framer Motion.
 
@@ -7,9 +7,14 @@ A premium, immersive personal portfolio website built with Next.js 15, React Thr
 - **Framework**: Next.js 15 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **3D**: React Three Fiber + Three.js + Drei
+- **3D**: React Three Fiber + Three.js + Drei + Postprocessing
 - **Animations**: Framer Motion
 - **Icons**: Lucide React + React Icons
+
+## Prerequisites
+
+- Node.js 18.18+
+- npm 9+
 
 ## Getting Started
 
@@ -25,7 +30,12 @@ npm run build
 
 # Start production server
 npm start
+
+# Lint
+npm run lint
 ```
+
+Then open [http://localhost:3000](http://localhost:3000).
 
 ## Features
 
@@ -34,11 +44,15 @@ npm start
 - Command palette (Ctrl+K) for quick navigation
 - Scroll progress indicator
 - Responsive design (mobile, tablet, desktop, ultra-wide)
-- SEO optimized with OpenGraph, JSON-LD, and sitemap
+- SEO optimized with OpenGraph, JSON-LD, sitemap, and robots.txt
 - PWA manifest
 - 404 page
 - Loading screen
 - Dark mode only
+
+## Sections
+
+Hero · About · Skills (Tech Stack) · Projects (with dynamic `[slug]` detail pages) · Experience · Education · Certifications · Achievements · Contact
 
 ## Project Structure
 
@@ -53,13 +67,17 @@ src/
 │   ├── globals.css         # Global styles
 │   └── projects/[slug]/    # Project detail pages
 ├── components/
-│   ├── ui/                 # Reusable UI components
-│   ├── sections/           # Page sections
-│   ├── layout/             # Navigation and footer
-│   ├── three/              # Three.js scene components
-│   └── effects/            # Visual effects
-├── lib/                    # Utilities and data
+│   ├── ui/                 # Reusable UI components (buttons, badges, command palette, etc.)
+│   ├── sections/           # Page sections (hero, about, projects, experience, ...)
+│   ├── layout/             # Navbar and footer
+│   └── three/              # Three.js scene components (particles, neural network, ...)
+├── lib/
+│   ├── data.ts             # Personal info, skills, projects, experience data
+│   └── utils.ts            # Utilities (cn helper)
 └── types/                  # TypeScript types
+public/
+├── manifest.json           # PWA manifest
+└── robots.txt              # Crawler rules
 ```
 
 ## Deployment
@@ -83,7 +101,7 @@ npm run build
 
 ## Customization
 
-1. Edit `src/lib/data.ts` to update your personal information, projects, skills, and experience
+1. Edit `src/lib/data.ts` to update your personal information, skills, projects, experience, education, and social links
 2. Modify colors in `tailwind.config.ts` and `src/app/globals.css`
 3. Update SEO metadata in `src/app/layout.tsx`
 4. Replace placeholder images in the `public/` directory
