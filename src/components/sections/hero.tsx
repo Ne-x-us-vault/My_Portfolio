@@ -5,7 +5,7 @@ import MagneticButton from "@/components/ui/magnetic-button";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[90vh] items-center pt-28 sm:min-h-[92vh] sm:pt-32">
+    <section className="section-fit relative flex min-h-[100svh] items-center overflow-clip pt-[88px] sm:pt-[96px]">
       <div className="container-premium relative">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
           {/* left */}

@@ -18,22 +18,26 @@
   --accent-2: #00D9FF;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
+*, *::before, *::after { box-sizing: border-box; }
 html {
+  width: 100%;
+  overflow-x: clip;
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.2) transparent;
 }
-
 body {
+  width: 100%;
+  overflow-x: clip;
   background: var(--bg);
   color: var(--ink);
   font-family: "Geist", "Instrument Sans", system-ui, sans-serif;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+img, canvas, svg, video { display: block; max-width: 100%; }
+section, header, footer, main, div { min-width: 0; }
+section { width: 100%; overflow: clip; }
 
 /* only hide cursor when custom cursor is active (desktop fine pointer) */
 @media (pointer: fine) {
@@ -58,7 +62,9 @@ body {
 }
 
 @layer components {
-  .container-premium { @apply mx-auto w-full max-w-[1280px] px-6 sm:px-8 lg:px-10; }
+  .container-premium { @apply w-full max-w-none px-4 sm:px-6 lg:px-8 xl:px-10 box-border; }
+  /* fit lock — every section locks to viewport */
+  .section-fit { @apply w-full max-w-full overflow-clip; }
   .label-mono { font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
   .display-serif { font-family: "Instrument Serif", serif; letter-spacing: -0.03em; line-height: 0.9; }
   .glass {
