@@ -1,38 +1,31 @@
 "use client";
-
-import { motion } from "framer-motion";
-import SectionHeading from "@/components/ui/section-heading";
-import GlowCard from "@/components/ui/glow-card";
 import { CERTIFICATIONS } from "@/lib/data";
-import { Award, ArrowUpRight } from "lucide-react";
+import { Award, ShieldCheck } from "lucide-react";
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="relative py-20 md:py-28 lg:py-32">
-      <div className="section-container">
-        <SectionHeading index={6} title="Certifications" subtitle="Professional certifications and memberships" />
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {CERTIFICATIONS.map((cert, index) => (
-            <motion.div
-              key={cert.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-            >
-              <GlowCard className="group flex items-start gap-4">
-                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 transition-all duration-500 group-hover:scale-110 group-hover:from-accent-primary/30 group-hover:to-accent-secondary/30">
-                  <Award className="h-5 w-5 text-accent-primary" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-medium text-white text-sm">{cert.name}</h3>
-                  <p className="mt-1 text-xs text-gray-400">{cert.issuer}</p>
-                  <p className="mt-1 text-xs text-gray-500">{cert.date}</p>
-                </div>
-                <ArrowUpRight className="h-4 w-4 flex-shrink-0 text-accent-primary opacity-0 -translate-x-1 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
-              </GlowCard>
-            </motion.div>
+    <section className="relative py-10">
+      <div className="container-premium">
+        <div className="flex items-center justify-between">
+          <h2 className="display-serif text-[22px] tracking-[-0.02em]">Awards & Certifications</h2>
+          <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[10px] tracking-[0.10em] text-white/30">05 · SINCE 2023</span>
+        </div>
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {CERTIFICATIONS.map((c, i) => (
+            <div key={c.name} className="glass glass-hover group relative overflow-hidden rounded-[18px] p-5">
+              <div className="pointer-events-none absolute -right-8 -top-8 h-20 w-20 rounded-full bg-[#7A7CFF]/10 blur-xl opacity-0 transition-opacity group-hover:opacity-100" />
+              <div className="flex items-start justify-between gap-4">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-black shadow">
+                  {i % 2 === 0 ? <Award className="h-4 w-4" /> : <ShieldCheck className="h-4 w-4" />}
+                </span>
+                <span className="rounded-full bg-white px-2.5 py-1 font-mono text-[10px] tracking-[0.08em] text-black">{c.date}</span>
+              </div>
+              <p className="display-serif mt-4 text-[15px] leading-tight tracking-[-0.02em]">{c.name}</p>
+              <p className="mt-1 font-mono text-[10px] tracking-[0.10em] text-white/35">{c.issuer}</p>
+              <div className="mt-4 flex items-center gap-1.5 font-mono text-[10px] tracking-[0.08em] text-white/20">
+                <span className="h-px w-6 bg-white/10" /> Verified
+              </div>
+            </div>
           ))}
         </div>
       </div>

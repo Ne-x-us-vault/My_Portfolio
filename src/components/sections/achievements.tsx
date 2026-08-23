@@ -1,56 +1,45 @@
 "use client";
-
-import { motion } from "framer-motion";
-import SectionHeading from "@/components/ui/section-heading";
-import GlowCard from "@/components/ui/glow-card";
 import { ACHIEVEMENTS } from "@/lib/data";
-import {
-  Crown,
-  Rocket,
-  Puzzle,
-  Users,
-  Target,
-  Music,
-  Zap,
-} from "lucide-react";
-
-const iconMap: Record<string, typeof Crown> = {
-  leadership: Crown,
-  entrepreneurship: Rocket,
-  "problem-solving": Puzzle,
-  teaching: Users,
-  strategy: Target,
-  music: Music,
-  hackathon: Zap,
-};
+import { Quote } from "lucide-react";
 
 export default function Achievements() {
+  const testimonials = [
+    { n: "Ethan Morales", r: "Marketing Director, Horizon", q: "Smooth from start to finish. Jaswa turned complex ideas into a cohesive interface that scales with us. The handoff was flawless.", a: "EM" },
+    { n: "Liam Carter", r: "Founder, Arcadia Tech", q: "Nailed our vision — modern, functional and true to brand. Seamless collaboration, zero friction. Would hire again in a heartbeat.", a: "LC" },
+    { n: "Sofia Carson", r: "Product Manager, Lumos", q: "Every choice was intentional. The result feels polished, intuitive and crafted — users noticed on day one.", a: "SC" },
+  ];
   return (
-    <section id="achievements" className="relative py-20 md:py-28 lg:py-32">
-      <div className="section-container">
-        <SectionHeading index={7} title="Achievements" subtitle="Skills and accomplishments beyond academics" />
+    <section className="relative py-10">
+      <div className="container-premium">
+        <div className="flex items-center justify-between">
+          <h2 className="display-serif text-[22px] tracking-[-0.02em]">Trusted by founders</h2>
+          <span className="font-mono text-[10px] tracking-[0.10em] text-white/25">03 TESTIMONIALS · DUMMY — REPLACE WHEN READY</span>
+        </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {ACHIEVEMENTS.map((achievement, index) => {
-            const Icon = iconMap[achievement.icon] || Crown;
-            return (
-              <motion.div
-                key={achievement.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-              >
-                <GlowCard className="group h-full">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-accent-primary/10 to-accent-secondary/10 transition-all duration-500 group-hover:scale-110 group-hover:from-accent-primary/25 group-hover:to-accent-secondary/25">
-                    <Icon className="h-5 w-5 text-accent-primary" />
-                  </div>
-                  <h3 className="font-display text-lg font-semibold text-white group-hover:text-accent-primary transition-colors">{achievement.title}</h3>
-                  <p className="mt-2 text-sm text-gray-400 leading-relaxed">{achievement.description}</p>
-                </GlowCard>
-              </motion.div>
-            );
-          })}
+        <div className="mt-6 grid gap-4 lg:grid-cols-3">
+          {testimonials.map((t) => (
+            <div key={t.n} className="glass glass-hover relative overflow-hidden rounded-[20px] p-6">
+              <Quote className="h-5 w-5 text-white/10" />
+              <p className="mt-3 text-[14px] leading-relaxed text-white/65">“{t.q}”</p>
+              <div className="mt-5 flex items-center gap-3 border-t border-white/5 pt-4">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[11px] font-bold text-black">{t.a}</span>
+                <div>
+                  <p className="text-[13px] font-medium tracking-[-0.01em]">{t.n}</p>
+                  <p className="font-mono text-[10px] tracking-[0.08em] text-white/30">{t.r}</p>
+                </div>
+                <span className="ml-auto text-[11px] text-amber-400">★★★★★</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 grid gap-3 sm:grid-cols-3">
+          {ACHIEVEMENTS.slice(0, 3).map((a) => (
+            <div key={a.title} className="glass rounded-[18px] p-6">
+              <p className="display-serif text-[16px] tracking-[-0.02em]">{a.title}</p>
+              <p className="mt-2 text-[13px] leading-relaxed text-white/40">{a.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

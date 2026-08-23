@@ -1,201 +1,111 @@
 "use client";
-
-import { motion } from "framer-motion";
+import { useState } from "react";
 import Link from "next/link";
-import SectionHeading from "@/components/ui/section-heading";
-import GlowCard from "@/components/ui/glow-card";
-import Badge from "@/components/ui/badge";
+import { motion } from "framer-motion";
 import { PROJECTS } from "@/lib/data";
-import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
-import type { Project } from "@/types";
-
-const ACCENTS = ["#60A5FA", "#34D399", "#F472B6", "#FBBF24", "#A78BFA"];
-
-function accentFor(project: Project) {
-  const index = PROJECTS.findIndex((p) => p.slug === project.slug);
-  return ACCENTS[index % ACCENTS.length] || ACCENTS[0];
-}
-
-function FeaturedProject({ project }: { project: Project }) {
-  const accent = accentFor(project);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5 }}
-    >
-      <GlowCard className="group">
-        <div className="grid gap-8 md:grid-cols-2 md:items-stretch">
-          <div
-            className="relative flex items-center justify-center overflow-hidden rounded-2xl p-12 md:min-h-[300px]"
-            style={{
-              background: `linear-gradient(135deg, ${accent}1F, transparent 55%, rgba(124,58,237,0.12))`,
-            }}
-          >
-            <div
-              className="absolute -right-10 -top-10 h-40 w-40 rounded-full blur-3xl opacity-30 transition-opacity duration-500 group-hover:opacity-60"
-              style={{ background: accent }}
-            />
-            <div
-              className="flex h-24 w-24 items-center justify-center rounded-3xl bg-white/10 backdrop-blur-sm transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3"
-              style={{ boxShadow: `0 0 50px -5px ${accent}66` }}
-            >
-              <span className="font-display text-4xl font-bold text-white">{project.title.charAt(0)}</span>
-            </div>
-            <div className="absolute left-5 top-5">
-              <Badge variant="accent">{project.category}</Badge>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-4">
-            <div className="flex items-start justify-between gap-4">
-              <h3 className="font-display text-2xl font-semibold text-white">
-                {project.title}
-              </h3>
-              <ArrowUpRight className="h-6 w-6 flex-shrink-0 text-accent-primary opacity-0 -translate-x-1 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
-            </div>
-            <p className="text-sm leading-relaxed text-gray-400">{project.shortDescription}</p>
-
-            <div className="flex flex-wrap gap-1.5">
-              {project.techStack.slice(0, 5).map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-md border border-white/[0.06] bg-white/5 px-2.5 py-1 text-[10px] text-gray-400"
-                >
-                  {tech}
-                </span>
-              ))}
-              {project.techStack.length > 5 && (
-                <span className="rounded-md bg-white/5 px-2.5 py-1 text-[10px] text-gray-400">
-                  +{project.techStack.length - 5}
-                </span>
-              )}
-            </div>
-
-            <div className="mt-auto flex flex-wrap items-center gap-3 pt-4">
-              <Link
-                href={`/projects/${project.slug}`}
-                className="flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-accent-primary to-accent-secondary px-4 py-2 text-xs font-medium text-white shadow-lg shadow-accent-primary/20 transition-all hover:shadow-accent-primary/40 hover:scale-[1.03] active:scale-[0.97]"
-              >
-                View Details
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </Link>
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-xs text-gray-300 transition-all hover:bg-white/10 hover:text-white"
-              >
-                <Github className="h-3.5 w-3.5" />
-                Code
-              </a>
-              {project.live && (
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 rounded-lg border border-accent-primary/20 bg-accent-primary/10 px-4 py-2 text-xs text-accent-primary transition-all hover:bg-accent-primary/20"
-                >
-                  <ExternalLink className="h-3.5 w-3.5" />
-                  Live
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
-      </GlowCard>
-    </motion.div>
-  );
-}
-
-function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const accent = accentFor(project);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="h-full"
-    >
-      <Link href={`/projects/${project.slug}`} className="block h-full">
-        <GlowCard className="group flex h-full flex-col">
-          <div
-            className="relative mb-5 overflow-hidden rounded-xl p-8"
-            style={{
-              background: `linear-gradient(135deg, ${accent}1A, transparent 55%, rgba(124,58,237,0.1))`,
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent" />
-            <div
-              className="absolute -right-6 -top-6 h-24 w-24 rounded-full blur-2xl opacity-30 transition-opacity duration-500 group-hover:opacity-60"
-              style={{ background: accent }}
-            />
-            <div className="relative flex items-center justify-center">
-              <div
-                className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3"
-                style={{ boxShadow: `0 0 30px -5px ${accent}55` }}
-              >
-                <span className="font-display text-2xl font-bold text-white">
-                  {project.title.charAt(0)}
-                </span>
-              </div>
-            </div>
-            <div className="absolute left-3 top-3">
-              <Badge variant="accent">{project.category}</Badge>
-            </div>
-            <div className="absolute right-3 top-3">
-              <ArrowUpRight className="h-5 w-5 text-white/60 opacity-0 -translate-x-1 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
-            </div>
-          </div>
-
-          <div className="flex flex-1 flex-col gap-3">
-            <h3 className="font-display text-lg font-semibold text-white transition-colors group-hover:text-accent-primary">
-              {project.title}
-            </h3>
-            <p className="text-sm leading-relaxed text-gray-400 line-clamp-3">
-              {project.shortDescription}
-            </p>
-
-            <div className="mt-auto flex flex-wrap gap-1.5 pt-3">
-              {project.techStack.slice(0, 4).map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-md border border-white/[0.06] bg-white/5 px-2 py-1 text-[10px] text-gray-400 transition-colors group-hover:border-white/10"
-                >
-                  {tech}
-                </span>
-              ))}
-              {project.techStack.length > 4 && (
-                <span className="rounded-md bg-white/5 px-2 py-1 text-[10px] text-gray-400">
-                  +{project.techStack.length - 4}
-                </span>
-              )}
-            </div>
-          </div>
-        </GlowCard>
-      </Link>
-    </motion.div>
-  );
-}
+import { ArrowUpRight, Github, ExternalLink, Sparkles } from "lucide-react";
 
 export default function Projects() {
-  const [featured, ...rest] = PROJECTS;
+  const [hovered, setHovered] = useState(PROJECTS[0].slug);
+  const active = PROJECTS.find((p) => p.slug === hovered) ?? PROJECTS[0];
 
   return (
-    <section id="projects" className="relative py-20 md:py-28 lg:py-32">
-      <div className="section-container">
-        <SectionHeading index={3} title="Projects" subtitle="Selected work showcasing my technical capabilities" />
+    <section id="works" className="relative py-16 sm:py-24">
+      <div className="container-premium">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="label-mono flex items-center gap-2">
+              <span className="h-px w-6 bg-white/15" /> Selected work — 04
+              <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[9px] tracking-[0.12em] text-white/40">2023 — 2026</span>
+            </p>
+            <h2 className="display-serif mt-3 text-[34px] tracking-[-0.03em] sm:text-[48px]">
+              Products that <span className="italic font-light text-white/65">ship</span>.
+            </h2>
+          </div>
+          <p className="max-w-[360px] text-[13px] leading-relaxed text-white/40">
+            Four real products — from GNOME shell to Tauri games to full-stack social OS. Hover to preview. Built fast, polished with care.
+          </p>
+        </div>
 
-        <div className="space-y-6">
-          <FeaturedProject project={featured} />
-          <div className="grid gap-6 md:grid-cols-2">
-            {rest.map((project, index) => (
-              <ProjectCard key={project.slug} project={project} index={index} />
+        <div className="mt-10 grid gap-6 lg:grid-cols-[1.18fr_0.82fr]">
+          <div className="space-y-3">
+            {PROJECTS.map((p, i) => (
+              <Link
+                key={p.slug}
+                href={`/projects/${p.slug}`}
+                data-cursor="view"
+                onMouseEnter={() => setHovered(p.slug)}
+                className={`group relative overflow-hidden rounded-[20px] border p-5 transition-all sm:p-6 ${hovered === p.slug ? "border-white/15 bg-white/[0.07] backdrop-blur shadow-[0_12px_32px_rgba(0,0,0,0.28)]" : "glass glass-hover"}`}
+              >
+                <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(520px circle at 30% 20%, rgba(122,124,255,0.10), transparent 70%)" }} />
+                <div className="relative flex items-start justify-between gap-4">
+                  <div className="flex gap-4">
+                    <span className={`mt-1 font-mono text-[11px] tracking-[0.14em] ${hovered === p.slug ? "text-white/60" : "text-white/22"}`}>0{i + 1}</span>
+                    <div>
+                      <h3 className="display-serif flex items-center gap-2 text-[20px] leading-none tracking-[-0.02em] sm:text-[22px]">
+                        {p.title}
+                        {i === 0 && <span className="rounded-full bg-[#7A7CFF] px-2 py-0.5 font-mono text-[9px] tracking-[0.12em] text-white">Featured</span>}
+                      </h3>
+                      <p className="mt-1.5 max-w-[440px] text-[13px] leading-relaxed text-white/48">{p.shortDescription}</p>
+                      <div className="mt-3 flex flex-wrap gap-1.5">
+                        {p.techStack.slice(0, 4).map((t) => (
+                          <span key={t} className={`rounded-full px-2.5 py-1 font-mono text-[10px] tracking-[0.09em] ${hovered === p.slug ? "bg-white text-black" : "bg-white/10 text-white/60"}`}>
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <span className={`hidden h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-all sm:flex ${hovered === p.slug ? "border-white bg-white text-black shadow" : "border-white/10 bg-white/5 text-white/50"}`}>
+                    <ArrowUpRight className="h-4 w-4" />
+                  </span>
+                </div>
+              </Link>
             ))}
+            <div className="flex items-center gap-2 pl-1 font-mono text-[10px] tracking-[0.10em] text-white/20">
+              <Sparkles className="h-3 w-3" /> All code on GitHub — github.com/Ne-x-us-vault
+            </div>
+          </div>
+
+          <div className="relative hidden lg:block">
+            <motion.div key={active.slug} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="sticky top-24 overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-br from-white/[0.09] via-white/[0.035] to-white/[0.02] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+              <div className="flex items-center justify-between font-mono text-[10px] tracking-[0.14em] text-white/30">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-black">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> {active.category}
+                </span>
+                <span>0{PROJECTS.findIndex((x) => x.slug === active.slug) + 1} / 04</span>
+              </div>
+              {/* browser mock */}
+              <div className="mt-6 overflow-hidden rounded-[16px] border border-white/10 bg-black/40">
+                <div className="flex items-center gap-1.5 border-b border-white/5 px-3 py-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+                  <span className="ml-3 flex-1 rounded-full bg-white/5 px-3 py-1 font-mono text-[10px] tracking-[0.08em] text-white/20">jaswa.dev/projects/{active.slug}</span>
+                </div>
+                <div className="relative bg-gradient-to-br from-[#7A7CFF]/15 via-white/5 to-[#00D9FF]/10 p-8">
+                  <div className="mx-auto flex h-[86px] w-[86px] items-center justify-center rounded-[20px] bg-white text-[32px] font-bold tracking-[-0.03em] text-black shadow-[0_16px_40px_rgba(0,0,0,0.35)] ring-1 ring-black/5">
+                    {active.title.charAt(0)}
+                  </div>
+                  <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-[#7A7CFF]/18 blur-2xl" />
+                </div>
+              </div>
+              <h4 className="display-serif mt-5 text-[22px] tracking-[-0.02em]">{active.title}</h4>
+              <p className="mt-1.5 text-[13px] leading-relaxed text-white/48 line-clamp-2">{active.description}</p>
+              <div className="mt-5 flex gap-2">
+                <Link href={`/projects/${active.slug}`} data-cursor="hover" className="flex-1 rounded-full bg-white py-2.5 text-center text-[13px] font-semibold text-black shadow hover:bg-white/90">
+                  View case →
+                </Link>
+                <a href={active.github} target="_blank" data-cursor="hover" className="flex items-center justify-center rounded-full border border-white/12 bg-white/5 px-4 py-2.5 text-white/70 backdrop-blur hover:bg-white/10">
+                  <Github className="h-4 w-4" />
+                </a>
+                {active.live && (
+                  <a href={active.live} target="_blank" className="flex items-center justify-center rounded-full border border-white/12 bg-white/5 px-4 py-2.5 text-white/70">
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                )}
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>

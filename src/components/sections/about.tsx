@@ -1,166 +1,92 @@
 "use client";
-
-import { motion } from "framer-motion";
-import SectionHeading from "@/components/ui/section-heading";
-import GlowCard from "@/components/ui/glow-card";
-import {
-  MapPin,
-  GraduationCap,
-  Briefcase,
-  BadgeCheck,
-  ArrowUpRight,
-} from "lucide-react";
-
-const stats = [
-  { value: "4+", label: "Years Building" },
-  { value: "20+", label: "Team Members Led" },
-  { value: "85%", label: "Pass Rate Achieved" },
-  { value: "15+", label: "Technologies" },
-];
-
-const focusAreas = [
-  "DevOps & Mobile Apps",
-  "AI & ML in EdTech",
-  "UI/UX Design",
-  "Robotics & Embedded",
-  "R&D & Rapid Prototyping",
-];
-
-const quickFacts = [
-  { icon: MapPin, label: "Location", value: "Coimbatore, India" },
-  { icon: GraduationCap, label: "Degree", value: "Integrated M.Tech CSE" },
-  { icon: Briefcase, label: "Role", value: "App Developer · UI/UX" },
-  { icon: BadgeCheck, label: "Status", value: "Open to opportunities" },
-];
+import { EDUCATION } from "@/lib/data";
+import { MapPin, GraduationCap, Briefcase, BadgeCheck } from "lucide-react";
 
 export default function About() {
   return (
-    <section id="about" className="relative py-20 md:py-28 lg:py-32">
-      <div className="section-container">
-        <div className="grid gap-16 lg:grid-cols-5 lg:gap-16">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-3"
-          >
-            <SectionHeading
-              index={1}
-              title="About Me"
-              subtitle="Building the bridge between hardware and software"
-              centered={false}
-              className="mb-10"
-            />
-
-            <div className="space-y-5 text-[15px] leading-relaxed text-gray-400">
+    <section id="about" className="relative py-16 sm:py-20">
+      <div className="container-premium">
+        <div className="grid gap-6 lg:grid-cols-[1.18fr_0.82fr]">
+          <div className="glass relative overflow-hidden rounded-[24px] p-8 sm:p-10">
+            <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#7A7CFF]/10 blur-3xl" />
+            <p className="label-mono">// About me</p>
+            <h2 className="display-serif mt-4 text-[30px] leading-[0.9] tracking-[-0.03em] sm:text-[36px]">
+              Designer & <span className="italic font-light text-white/70">developer</span> obsessed
+              <br /> with shipping.
+            </h2>
+            <div className="mt-6 space-y-4 text-[14px] leading-relaxed text-white/55">
               <p>
-                I&apos;m an <span className="font-medium text-white">Integrated M.Tech CSE</span> student
-                in Coimbatore, Tamil Nadu — an <span className="font-medium text-accent-primary">application developer</span>{" "}
-                and <span className="font-medium text-accent-highlight">UI/UX designer</span> who builds
-                across mobile apps, UI/UX, and embedded systems, with a growing focus on robotics and DevOps.
+                I&apos;m <span className="font-semibold text-white">Jaswa J.R</span> — Integrated M.Tech CSE, Coimbatore. I live at the intersection of mobile, web and embedded — now leaning into robotics & DevOps.
               </p>
               <p>
-                I favor <span className="font-medium text-white">practical, bolt-on solutions</span> over
-                full system rebuilds — extending what already works instead of replacing it. And I work
-                fastest under a deadline: most of my shipped projects started as hackathon builds.
+                <span className="text-white">Bolt-on over rebuild</span> — I extend what works. <span className="text-white">Hackathon pressure</span> is my edge: most shipped work started under a deadline and turned into a polished product.
               </p>
               <p>
-                Beyond technology, I&apos;m a <span className="font-medium text-white">founder and entrepreneur</span>,
-                having built <span className="font-medium text-white">JR Tunes</span> from the ground up —
-                managing a team of 20+ students, achieving 85%+ examination pass rates, and developing
-                comprehensive music education programs.
+                Founder of <span className="font-semibold text-white">JR Tunes</span> — 20+ team, 85%+ Trinity pass rate. I owned ops, marketing, curriculum and growth — and learned to build for real users.
               </p>
             </div>
 
-            <div className="mt-8">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
-                Focus Areas
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {focusAreas.map((area) => (
-                  <span
-                    key={area}
-                    className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs text-gray-300 transition-colors hover:border-accent-primary/40 hover:text-white"
-                  >
-                    {area}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
-                  className="rounded-2xl border border-white/[0.06] bg-white/[0.02] px-4 py-5 text-center"
-                >
-                  <p className="font-display text-2xl font-bold gradient-text-static">{stat.value}</p>
-                  <p className="mt-1 text-[11px] leading-tight text-gray-500">{stat.label}</p>
-                </motion.div>
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {[
+                { icon: MapPin, k: "Location", v: "Coimbatore, IN" },
+                { icon: GraduationCap, k: "Degree", v: "M.Tech CSE" },
+                { icon: Briefcase, k: "Role", v: "App Dev · UI/UX" },
+                { icon: BadgeCheck, k: "Status", v: "Open to work" },
+              ].map((f) => (
+                <div key={f.k} className="rounded-[14px] border border-white/8 bg-white/[0.03] p-3">
+                  <f.icon className="h-4 w-4 text-white/30" />
+                  <p className="mt-2 font-mono text-[9px] tracking-[0.12em] text-white/30">{f.k.toUpperCase()}</p>
+                  <p className="text-[12px] font-medium tracking-[-0.01em] text-white/80">{f.v}</p>
+                </div>
               ))}
             </div>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-2"
-          >
-            <GlowCard className="flex h-full flex-col gap-6">
-              <div className="flex items-center gap-5">
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent-primary via-accent-secondary to-accent-highlight blur-lg opacity-40" />
-                  <div className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-accent-primary via-accent-secondary to-accent-highlight p-[2px]">
-                    <div className="flex h-full w-full items-center justify-center rounded-2xl bg-background">
-                      <span className="font-display text-2xl font-bold gradient-text">JR</span>
-                    </div>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {["DevOps & Mobile", "AI/ML · EdTech", "UI/UX", "Robotics", "R&D"].map((t) => (
+                <span key={t} className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 font-mono text-[10px] tracking-[0.10em] text-white/60 backdrop-blur">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="glass relative overflow-hidden rounded-[24px] p-7 sm:p-8">
+            <div className="flex items-center justify-between">
+              <p className="label-mono">Experience</p>
+              <span className="rounded-full bg-white/5 px-2.5 py-1 font-mono text-[10px] tracking-[0.10em] text-white/30 ring-1 ring-white/10">2020 — 2026</span>
+            </div>
+
+            <div className="mt-6 space-y-1">
+              {[
+                { t: "Founder & Managing Director", c: "JR TUNES — COIMBATORE", y: "2020 — Present", active: true },
+                { t: "Independent Product Developer", c: "OPEN SOURCE · GNOME / TAURI / WEB", y: "2023 — Present", active: false },
+                { t: "M.Tech CSE — Research & Build", c: "UNIVERSITY — IOT / AI/ML", y: "2022 — Present", active: false },
+              ].map((r) => (
+                <div key={r.t} className={`flex items-start justify-between gap-4 rounded-[14px] border p-4 transition-colors ${r.active ? "border-white/15 bg-white/[0.06]" : "border-white/5 bg-white/[0.02] hover:bg-white/[0.04]"}`}>
+                  <div>
+                    <p className="display-serif text-[15px] leading-none tracking-[-0.02em]">{r.t}</p>
+                    <p className="mt-1 font-mono text-[10px] tracking-[0.10em] text-white/30">{r.c}</p>
                   </div>
+                  <span className={`shrink-0 rounded-full px-2.5 py-1 font-mono text-[10px] tracking-[0.08em] ${r.active ? "bg-white text-black" : "bg-white/5 text-white/40 ring-1 ring-white/10"}`}>{r.y}</span>
                 </div>
-                <div>
-                  <h3 className="font-display text-xl font-semibold text-white">Jaswa J.R</h3>
-                  <p className="mt-0.5 text-sm text-gray-400">Application Developer · UI/UX</p>
-                  <div className="mt-2 flex items-center gap-2">
-                    <span className="relative flex h-2 w-2">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
-                    </span>
-                    <span className="text-xs text-green-400">Available for work</span>
+              ))}
+            </div>
+
+            <div className="hairline my-6" />
+
+            <p className="font-mono text-[10px] tracking-[0.12em] text-white/25">EDUCATION</p>
+            <div className="mt-3 grid grid-cols-1 gap-3">
+              {EDUCATION.map((e) => (
+                <div key={e.degree} className="flex items-center justify-between rounded-[14px] border border-white/8 bg-white/[0.03] p-4">
+                  <div>
+                    <p className="display-serif text-[13px] leading-tight tracking-[-0.01em]">{e.degree}</p>
+                    <p className="mt-1 font-mono text-[10px] tracking-[0.08em] text-white/30">{e.institution}</p>
                   </div>
+                  <span className="rounded-full bg-white px-2.5 py-1 font-mono text-[10px] tracking-[0.08em] text-black">{e.period}</span>
                 </div>
-              </div>
-
-              <div className="h-px w-full bg-gradient-to-r from-accent-primary/30 via-white/[0.06] to-transparent" />
-
-              <div className="space-y-3">
-                {quickFacts.map((fact) => (
-                  <div key={fact.label} className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-accent-primary/10 text-accent-primary">
-                      <fact.icon className="h-4 w-4" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-[11px] uppercase tracking-wider text-gray-500">{fact.label}</p>
-                      <p className="truncate text-sm text-gray-300">{fact.value}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <a
-                href="#contact"
-                className="group mt-auto flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-gray-300 transition-all hover:border-accent-primary/40 hover:bg-accent-primary/10 hover:text-white"
-              >
-                Let&apos;s work together
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-            </GlowCard>
-          </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

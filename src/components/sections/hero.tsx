@@ -1,218 +1,111 @@
 "use client";
-
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail, Download, Sparkles } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowDown, Sparkles, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import MagneticButton from "@/components/ui/magnetic-button";
 
-const roles = [
-  "Application Developer",
-  "Mobile App Developer",
-  "UI/UX Designer",
-  "Embedded & Robotics",
-  "DevOps Enthusiast",
-];
-const TYPING_SPEED = 90;
-const ERASING_SPEED = 45;
-const PAUSE_DURATION = 2200;
-
-function useTypewriter(words: string[]) {
-  const [index, setIndex] = useState(0);
-  const [text, setText] = useState("");
-  const [deleting, setDeleting] = useState(false);
-
-  useEffect(() => {
-    const word = words[index % words.length];
-    let timeout: ReturnType<typeof setTimeout>;
-
-    if (!deleting && text === word) {
-      timeout = setTimeout(() => setDeleting(true), PAUSE_DURATION);
-    } else if (deleting && text === "") {
-      setDeleting(false);
-      setIndex((i) => (i + 1) % words.length);
-    } else {
-      timeout = setTimeout(
-        () => setText(word.slice(0, text.length + (deleting ? -1 : 1))),
-        deleting ? ERASING_SPEED : TYPING_SPEED
-      );
-    }
-    return () => clearTimeout(timeout);
-  }, [text, deleting, index, words]);
-
-  return text;
-}
-
 export default function Hero() {
-  const typed = useTypewriter(roles);
-
-  const scrollToProjects = () => {
-    const el = document.querySelector("#projects");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <section id="hero" className="relative flex min-h-[100svh] items-center justify-center overflow-hidden">
-      <div className="section-container relative z-10 w-full py-28 sm:py-32">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col items-center gap-6 text-center sm:gap-8"
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex items-center gap-2 rounded-full border border-green-500/25 bg-green-500/10 px-4 py-1.5 text-xs font-medium text-green-400 backdrop-blur-sm"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
-            </span>
-            Available for opportunities
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent-primary via-accent-secondary to-accent-highlight blur-xl opacity-40 animate-pulse-glow" />
-            <div className="relative h-24 w-24 rounded-full bg-gradient-to-br from-accent-primary via-accent-secondary to-accent-highlight p-[2px] sm:h-28 sm:w-28">
-              <div className="flex h-full w-full items-center justify-center rounded-full bg-background">
-                <span className="font-display text-2xl font-bold gradient-text sm:text-3xl">JR</span>
-              </div>
-            </div>
-            <div className="absolute -inset-3 rounded-full border border-dashed border-accent-primary/25 animate-spin-slow" />
-            <div className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-[10px] shadow-lg shadow-green-500/40">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+    <section className="relative flex min-h-[90vh] items-center pt-28 sm:min-h-[92vh] sm:pt-32">
+      <div className="container-premium relative">
+        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+          {/* left */}
+          <div className="max-w-[880px]">
+            <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-3.5 py-1.5 backdrop-blur">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7A7CFF]/15 text-[#7A7CFF]">
+                <Sparkles className="h-3 w-3" />
               </span>
-            </div>
-          </motion.div>
+              <span className="font-mono text-[10px] tracking-[0.14em] text-white/70">INTEGRATED M.TECH CSE · COIMBATORE, IN — AVAILABLE FOR WORK</span>
+            </motion.div>
 
-          <div className="space-y-2">
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-xs font-medium uppercase tracking-[0.3em] text-accent-primary sm:text-sm"
-            >
-              Hello, I&apos;m
-            </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="font-display text-[2.75rem] font-bold leading-none tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
-            >
-              <span className="text-white">Jaswa </span>
-              <span className="gradient-text">J.R</span>
+            <motion.h1 initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75, delay: 0.08 }} className="display-serif mt-6 text-[42px] leading-[0.86] tracking-[-0.045em] text-white sm:text-[62px] lg:text-[78px]">
+              Application <span className="italic font-light text-white/85">developer</span>
+              <br />
+              <span className="text-white">crafting clear,</span>
+              <br />
+              <span className="bg-gradient-to-r from-[#7A7CFF] via-[#8b8fff] to-[#00D9FF] bg-clip-text text-transparent">human</span> products.
             </motion.h1>
-          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex items-center gap-3 font-medium text-lg text-gray-300 sm:text-2xl"
-          >
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent-primary/10 text-accent-primary sm:h-8 sm:w-8">
-              <Sparkles className="h-4 w-4" />
-            </span>
-            <span className="min-h-[1.4em]">{typed}</span>
-            <span className="h-6 w-[2px] rounded-full bg-accent-primary animate-caret" />
-          </motion.div>
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.18 }} className="mt-6 max-w-[540px] text-[15px] leading-relaxed text-white/55 sm:text-[16px]">
+              I build across mobile, web, and embedded — with a growing focus on robotics & DevOps. Bolt-on over rebuild. Fastest under a deadline — most shipped work started as a hackathon.
+            </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="mx-auto max-w-xl text-balance text-base text-gray-400 sm:text-lg"
-          >
-            Building across mobile apps, UI/UX, and embedded systems — with a growing focus on
-            robotics and DevOps.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4"
-          >
-            <MagneticButton className="w-full sm:w-auto">
-              <button
-                onClick={scrollToProjects}
-                className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-accent-primary to-accent-secondary px-8 py-3.5 text-sm font-medium text-white shadow-lg shadow-accent-primary/25 transition-all hover:shadow-accent-primary/40 hover:scale-[1.02] active:scale-[0.98] sm:w-auto"
-              >
-                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
-                View My Work
-                <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
-              </button>
-            </MagneticButton>
-            <MagneticButton className="w-full sm:w-auto">
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-8 py-3.5 text-sm font-medium text-white transition-all hover:bg-white/10 hover:border-white/20 hover:-translate-y-0.5 sm:w-auto"
-              >
-                <Download className="h-4 w-4" />
-                Resume
-              </a>
-            </MagneticButton>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className="flex items-center gap-4"
-          >
-            {[
-              { icon: Github, url: "https://github.com/Ne-x-us-vault", label: "GitHub" },
-              { icon: Linkedin, url: "https://linkedin.com/in/jaswa-j-r", label: "LinkedIn" },
-              { icon: Mail, url: "mailto:jaswa.personal.3617@outlook.com", label: "Email" },
-            ].map(({ icon: Icon, url, label }) => (
-              <a
-                key={label}
-                href={url}
-                target={url.startsWith("mailto") ? undefined : "_blank"}
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="group flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-gray-400 transition-all hover:border-accent-primary/50 hover:bg-accent-primary/10 hover:text-accent-primary hover:-translate-y-0.5"
-              >
-                <Icon className="h-4 w-4" />
-              </a>
-            ))}
-          </motion.div>
-        </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.5 }}
-            className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 sm:block"
-          >
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="flex flex-col items-center gap-2 text-gray-500"
-            >
-              <span className="text-xs uppercase tracking-widest">Scroll</span>
-              <span className="flex h-9 w-6 items-start justify-center rounded-full border border-white/15 p-1">
-                <motion.span
-                  animate={{ y: [0, 8, 0], opacity: [1, 0.3, 1] }}
-                  transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-                  className="h-1.5 w-1 rounded-full bg-accent-primary"
-                />
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.28 }} className="mt-8 flex flex-wrap items-center gap-3">
+              <MagneticButton>
+                <button
+                  data-cursor="hover"
+                  onClick={() => document.querySelector("#works")?.scrollIntoView({ behavior: "smooth" })}
+                  className="group inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3.5 text-[13px] font-semibold tracking-[-0.01em] text-black shadow-[0_8px_24px_rgba(255,255,255,0.12)] transition-all hover:bg-white/90"
+                >
+                  View selected work
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-black text-white transition-transform duration-300 group-hover:translate-y-0.5">
+                    <ArrowDown className="h-3.5 w-3.5" />
+                  </span>
+                </button>
+              </MagneticButton>
+              <MagneticButton>
+                <a href="/resume.pdf" target="_blank" data-cursor="hover" className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.06] px-6 py-3.5 text-[13px] font-medium tracking-[-0.01em] text-white backdrop-blur transition-colors hover:bg-white/[0.10]">
+                  Resume ↗
+                </a>
+              </MagneticButton>
+              <span className="hidden items-center gap-2 pl-1 font-mono text-[10px] tracking-[0.14em] text-white/25 sm:flex">
+                <span className="h-px w-6 bg-white/15" /> SCROLL ↓
               </span>
             </motion.div>
-          </motion.div>
 
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.55 }} className="mt-10 flex items-center gap-3">
+              {[
+                { icon: Github, href: "https://github.com/Ne-x-us-vault", label: "GitHub" },
+                { icon: Linkedin, href: "https://linkedin.com/in/jaswa-j-r", label: "LinkedIn" },
+                { icon: Mail, href: "mailto:jaswa.personal.3617@outlook.com", label: "Email" },
+              ].map((s) => (
+                <a key={s.label} href={s.href} target="_blank" data-cursor="hover" aria-label={s.label} className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 backdrop-blur transition-all hover:border-white/15 hover:bg-white/10 hover:text-white">
+                  <s.icon className="h-4 w-4" />
+                </a>
+              ))}
+              <span className="ml-2 hidden items-center gap-1.5 font-mono text-[10px] tracking-[0.10em] text-white/30 sm:flex">
+                <MapPin className="h-3 w-3" /> Coimbatore, Tamil Nadu
+              </span>
+            </motion.div>
+          </div>
+
+          {/* right — proof card */}
+          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.22 }} className="hidden lg:block">
+            <div className="glass relative overflow-hidden rounded-[24px] p-7">
+              <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#7A7CFF]/15 blur-2xl" />
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[12px] font-bold text-black">JR</div>
+                <div>
+                  <p className="text-[13px] font-semibold tracking-[-0.01em]">Jaswa J.R</p>
+                  <p className="font-mono text-[10px] tracking-[0.12em] text-white/35">APPLICATION DEV · UI/UX</p>
+                </div>
+                <span className="ml-auto rounded-full bg-emerald-500/10 px-2.5 py-1 font-mono text-[10px] tracking-[0.08em] text-emerald-300 ring-1 ring-emerald-500/20">● Available</span>
+              </div>
+              <div className="mt-6 grid grid-cols-3 gap-3 border-y border-white/5 py-6">
+                <div className="text-center">
+                  <p className="display-serif text-[22px] leading-none">12+</p>
+                  <p className="mt-1 font-mono text-[9px] tracking-[0.12em] text-white/30">PROJECTS</p>
+                </div>
+                <div className="border-x border-white/5 text-center">
+                  <p className="display-serif text-[22px] leading-none">04+</p>
+                  <p className="mt-1 font-mono text-[9px] tracking-[0.12em] text-white/30">YEARS</p>
+                </div>
+                <div className="text-center">
+                  <p className="display-serif text-[22px] leading-none">20+</p>
+                  <p className="mt-1 font-mono text-[9px] tracking-[0.12em] text-white/30">TEAM</p>
+                </div>
+              </div>
+              <div className="mt-6 flex flex-wrap gap-1.5">
+                {["React", "Next.js", "Kotlin", "Node.js", "Three.js", "Docker"].map((t) => (
+                  <span key={t} className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[10px] tracking-[0.08em] text-white/60">{t}</span>
+                ))}
+              </div>
+              <div className="pointer-events-none absolute inset-0 rounded-[24px] bg-gradient-to-br from-white/[0.04] to-transparent" />
+            </div>
+            <p className="mt-3 text-center font-mono text-[10px] tracking-[0.10em] text-white/20">Use the pill below to switch 3D — Water / Gridwave / Tunnel</p>
+          </motion.div>
+        </div>
       </div>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#08080A] to-transparent" />
     </section>
   );
 }
