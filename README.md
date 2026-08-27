@@ -70,7 +70,7 @@ src/
 │   ├── ui/                 # Reusable UI components (buttons, badges, command palette, etc.)
 │   ├── sections/           # Page sections (hero, about, services, projects, experience, ...)
 │   ├── layout/             # Navbar and footer
-│   └── three/              # Three.js scene components (particles, neural network, scene, ...)
+│   └── three/              # Three.js scene components (particles, neural network, scene, scene-loader, ...)
 ├── lib/
 │   ├── data.ts             # Personal info, skills, projects, experience data
 │   └── utils.ts            # Utilities (cn helper)
