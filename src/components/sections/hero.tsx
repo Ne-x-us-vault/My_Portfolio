@@ -22,7 +22,7 @@ export default function Hero() {
               <br />
               <span className="text-white">crafting clear,</span>
               <br />
-              <span className="bg-gradient-to-r from-[#7A7CFF] via-[#8b8fff] to-[#00D9FF] bg-clip-text text-transparent">human</span> products.
+              <span className="text-accent-gradient">human</span> products.
             </motion.h1>
 
             <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.18 }} className="mt-6 max-w-[520px] text-[15px] leading-[1.65] text-white/55 sm:text-[16px]">
@@ -43,7 +43,7 @@ export default function Hero() {
                 </button>
               </MagneticButton>
               <MagneticButton>
-                <a href="/resume.pdf" target="_blank" data-cursor="hover" className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.06] px-6 py-3.5 text-[13px] font-medium tracking-[-0.01em] text-white backdrop-blur transition-colors hover:bg-white/[0.10]">
+                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" data-cursor="hover" className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.06] px-6 py-3.5 text-[13px] font-medium tracking-[-0.01em] text-white backdrop-blur transition-colors hover:bg-white/[0.10]">
                   Resume ↗
                 </a>
               </MagneticButton>
@@ -58,7 +58,7 @@ export default function Hero() {
                 { icon: Linkedin, href: "https://linkedin.com/in/jaswa-j-r", label: "LinkedIn" },
                 { icon: Mail, href: "mailto:jaswa.personal.3617@outlook.com", label: "Email" },
               ].map((s) => (
-                <a key={s.label} href={s.href} target="_blank" data-cursor="hover" aria-label={s.label} className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 backdrop-blur transition-all hover:border-white/15 hover:bg-white/10 hover:text-white">
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" data-cursor="hover" aria-label={s.label} className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 backdrop-blur transition-all hover:border-white/15 hover:bg-white/10 hover:text-white">
                   <s.icon className="h-4 w-4" />
                 </a>
               ))}
@@ -78,7 +78,9 @@ export default function Hero() {
                   <p className="text-[13px] font-semibold tracking-[-0.01em]">Jaswa J.R</p>
                   <p className="font-mono text-[10px] tracking-[0.12em] text-white/35">APPLICATION DEV · UI/UX</p>
                 </div>
-                <span className="ml-auto rounded-full bg-emerald-500/10 px-2.5 py-1 font-mono text-[10px] tracking-[0.08em] text-emerald-300 ring-1 ring-emerald-500/20">● Available</span>
+                <span className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 font-mono text-[10px] tracking-[0.08em] text-emerald-300 ring-1 ring-emerald-500/20">
+                  <span className="status-dot" /> Available
+                </span>
               </div>
               <div className="mt-6 grid grid-cols-3 gap-3 border-y border-white/5 py-6">
                 <div className="text-center">

@@ -1,15 +1,37 @@
 "use client";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { Mail, MapPin, Github, Linkedin, Send, CheckCircle2 } from "lucide-react";
+
+type FormState = { name: string; email: string; message: string };
+type FormErrors = Partial<Record<keyof FormState, string>>;
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const submit = (e: React.FormEvent) => {
+  const [form, setForm] = useState<FormState>({ name: "", email: "", message: "" });
+  const [errors, setErrors] = useState<FormErrors>({});
+
+  const validate = (data: FormState): FormErrors => {
+    const e: FormErrors = {};
+    if (!data.name.trim()) e.name = "Please enter your name";
+    if (!data.email.trim()) e.email = "Please enter your email";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) e.email = "Please enter a valid email";
+    if (!data.message.trim() || data.message.trim().length < 10) e.message = "Tell me a bit more (at least 10 chars)";
+    return e;
+  };
+
+  const submit = (e: FormEvent) => {
     e.preventDefault();
+    const eMap = validate(form);
+    setErrors(eMap);
+    if (Object.keys(eMap).length) return;
     setSent(true);
-    setTimeout(() => setSent(false), 2800);
     setForm({ name: "", email: "", message: "" });
+    setTimeout(() => setSent(false), 3200);
+  };
+
+  const onChange = (k: keyof FormState) => (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm((f) => ({ ...f, [k]: ev.target.value }));
+    if (errors[k]) setErrors((er) => ({ ...er, [k]: undefined }));
   };
 
   return (
@@ -58,16 +80,42 @@ export default function Contact() {
                 <div className="grid gap-3 sm:grid-cols-2">
                   <label className="space-y-1.5">
                     <span className="font-mono text-[10px] tracking-[0.10em] text-white/30">NAME</span>
-                    <input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Ada Lovelace" className="w-full rounded-full border border-white/10 bg-white/5 px-4 py-3 text-[14px] text-white placeholder-white/25 outline-none transition-colors focus:border-white/20 focus:bg-white/10" />
+                    <input
+                      required
+                      value={form.name}
+                      onChange={onChange("name")}
+                      aria-invalid={!!errors.name}
+                      placeholder="Ada Lovelace"
+                      className={`w-full rounded-full border bg-white/5 px-4 py-3 text-[14px] text-white placeholder-white/25 outline-none transition-colors focus:bg-white/10 ${errors.name ? "border-rose-400/40" : "border-white/10 focus:border-white/20"}`}
+                    />
+                    {errors.name && <span className="block pl-4 font-mono text-[10px] text-rose-300/80">{errors.name}</span>}
                   </label>
                   <label className="space-y-1.5">
                     <span className="font-mono text-[10px] tracking-[0.10em] text-white/30">EMAIL</span>
-                    <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="ada@analytical.engine" className="w-full rounded-full border border-white/10 bg-white/5 px-4 py-3 text-[14px] text-white placeholder-white/25 outline-none transition-colors focus:border-white/20 focus:bg-white/10" />
+                    <input
+                      required
+                      type="email"
+                      value={form.email}
+                      onChange={onChange("email")}
+                      aria-invalid={!!errors.email}
+                      placeholder="ada@analytical.engine"
+                      className={`w-full rounded-full border bg-white/5 px-4 py-3 text-[14px] text-white placeholder-white/25 outline-none transition-colors focus:bg-white/10 ${errors.email ? "border-rose-400/40" : "border-white/10 focus:border-white/20"}`}
+                    />
+                    {errors.email && <span className="block pl-4 font-mono text-[10px] text-rose-300/80">{errors.email}</span>}
                   </label>
                 </div>
                 <label className="mt-3 block space-y-1.5">
                   <span className="font-mono text-[10px] tracking-[0.10em] text-white/30">MESSAGE</span>
-                  <textarea required rows={4} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Tell me about your product or opportunity..." className="w-full resize-none rounded-[18px] border border-white/10 bg-white/5 px-4 py-3 text-[14px] leading-relaxed text-white placeholder-white/25 outline-none transition-colors focus:border-white/20 focus:bg-white/10" />
+                  <textarea
+                    required
+                    rows={4}
+                    value={form.message}
+                    onChange={onChange("message")}
+                    aria-invalid={!!errors.message}
+                    placeholder="Tell me about your product or opportunity..."
+                    className={`w-full resize-none rounded-[18px] border bg-white/5 px-4 py-3 text-[14px] leading-relaxed text-white placeholder-white/25 outline-none transition-colors focus:bg-white/10 ${errors.message ? "border-rose-400/40" : "border-white/10 focus:border-white/20"}`}
+                  />
+                  {errors.message && <span className="block pl-4 font-mono text-[10px] text-rose-300/80">{errors.message}</span>}
                 </label>
                 <button type="submit" data-cursor="hover" className="group mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-white py-3.5 font-semibold tracking-[-0.01em] text-black shadow-[0_8px_24px_rgba(255,255,255,0.12)] transition-all hover:bg-white/90 active:scale-[0.99]">
                   {sent ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : <Send className="h-4 w-4" />}
@@ -76,7 +124,6 @@ export default function Contact() {
                 </button>
                 <p className="mt-3 text-center font-mono text-[10px] tracking-[0.08em] text-white/20">By sending, you agree to be contacted back. No spam — promise.</p>
               </div>
-              {/* subtle glow */}
               <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-white/5 blur-2xl" />
             </form>
           </div>
@@ -84,7 +131,11 @@ export default function Contact() {
 
         <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/5 pt-6 font-mono text-[10px] tracking-[0.10em] text-white/20">
           <span>© 2026 JASWA J.R — CRAFTED WITH PASSION · NEXT.JS · THREE.JS · FRAMER MOTION</span>
-          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} data-cursor="hover" className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-white/30 hover:bg-white hover:text-black">
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            data-cursor="hover"
+            className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-white/30 transition-colors hover:bg-white hover:text-black"
+          >
             Back to top ↑
           </button>
         </div>

@@ -28,7 +28,7 @@ export default function Home(){
       <Spotlight />
       <ScrollProgress />
       <Navbar />
-      <main className="relative z-10">
+      <main id="main" className="relative z-10">
         <Hero />
         <Projects />
         <FeaturedProducts />

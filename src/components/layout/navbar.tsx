@@ -97,7 +97,7 @@ export default function Navbar() {
               >
                 Email me <ArrowUpRight className="h-3.5 w-3.5 opacity-60" />
               </a>
-              <button onClick={() => setOpen(!open)} data-cursor="hover" className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-black transition-transform active:scale-95 lg:hidden">
+              <button onClick={() => setOpen(!open)} data-cursor="hover" className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-black transition-transform active:scale-95 xl:hidden">
                 {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
               </button>
             </div>
@@ -107,7 +107,7 @@ export default function Navbar() {
 
       <AnimatePresence>
         {open && (
-          <motion.div initial={{ opacity: 0, y: -14, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -14, scale: 0.98 }} transition={{ type: "spring", stiffness: 420, damping: 32 }} className="fixed inset-x-0 top-[76px] z-40 px-6 lg:hidden">
+          <motion.div initial={{ opacity: 0, y: -14, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -14, scale: 0.98 }} transition={{ type: "spring", stiffness: 420, damping: 32 }} className="fixed inset-x-0 top-[76px] z-40 px-6 xl:hidden">
             <div className="overflow-hidden rounded-[22px] border border-white/10 bg-[#111114]/95 p-2 shadow-2xl backdrop-blur-xl">
               {LINKS.map((l) => (
                 <button key={l.href} onClick={() => go(l.href)} className="flex w-full items-center justify-between rounded-full px-4 py-3.5 text-left text-[15px] font-medium tracking-[-0.01em] text-white/85 hover:bg-white hover:text-black">
