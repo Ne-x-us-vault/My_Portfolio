@@ -1,5 +1,5 @@
 "use client";
-import dynamic from "next/dynamic";
+import SceneLoader from "@/components/three/scene-loader";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import ScrollProgress from "@/components/ui/scroll-progress";
@@ -19,11 +19,10 @@ import Achievements from "@/components/sections/achievements";
 import Experience from "@/components/sections/experience";
 import FAQ from "@/components/sections/faq";
 import Contact from "@/components/sections/contact";
-const Scene = dynamic(()=>import("@/components/three/scene"),{ssr:false, loading:()=><div className="fixed inset-0 -z-10 bg-[#08080A]" />});
 export default function Home(){
   return (
     <>
-      <Scene />
+      <SceneLoader />
       <CustomCursor />
       <Spotlight />
       <ScrollProgress />
