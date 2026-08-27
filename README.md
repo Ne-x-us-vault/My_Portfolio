@@ -52,7 +52,7 @@ Then open [http://localhost:3000](http://localhost:3000).
 
 ## Sections
 
-Hero · About · Skills (Tech Stack) · Projects (with dynamic `[slug]` detail pages) · Experience · Education · Certifications · Achievements · Contact
+Hero · About · Skills (Tech Stack) · Services · Pricing · Process · Projects (with dynamic `[slug]` detail pages) · Featured Products · Experience · Education · Certifications · Achievements · FAQ · Contact
 
 ## Project Structure
 
@@ -68,13 +68,13 @@ src/
 │   └── projects/[slug]/    # Project detail pages
 ├── components/
 │   ├── ui/                 # Reusable UI components (buttons, badges, command palette, etc.)
-│   ├── sections/           # Page sections (hero, about, projects, experience, ...)
+│   ├── sections/           # Page sections (hero, about, services, projects, experience, ...)
 │   ├── layout/             # Navbar and footer
-│   └── three/              # Three.js scene components (particles, neural network, ...)
+│   └── three/              # Three.js scene components (particles, neural network, scene, ...)
 ├── lib/
 │   ├── data.ts             # Personal info, skills, projects, experience data
 │   └── utils.ts            # Utilities (cn helper)
-└── types/                  # TypeScript types
+└── types/                  # TypeScript types (index.ts)
 public/
 ├── manifest.json           # PWA manifest
 └── robots.txt              # Crawler rules
