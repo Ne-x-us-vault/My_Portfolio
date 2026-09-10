@@ -38,7 +38,7 @@ const ABSOLUTE_IMAGES = [
 ];
 
 const ABOUT_TEXT =
-  "With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!";
+  "I'm a mobile app developer and ui/ux designer based in tamil nadu, india. i build intuitive apps and thoughtful interfaces, focusing on user experience, and i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!";
 
 export default function AboutSection() {
   return (

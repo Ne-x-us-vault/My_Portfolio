@@ -3,21 +3,21 @@ import FadeIn from "../components/FadeIn";
 const SERVICES = [
   {
     number: "01",
-    name: "3D Modeling",
+    name: "Mobile App Development",
     description:
-      "Creation of detailed objects, characters, or environments tailored to specific client needs, ideal for games, products, and visualizations.",
+      "Intuitive, cross-platform apps built with Flutter and Dart, designed around a polished and dependable user experience.",
   },
   {
     number: "02",
-    name: "Rendering",
+    name: "UI/UX Design",
     description:
-      "High-quality, photorealistic renders that showcase designs with custom lighting, textures, and materials to bring concepts to life.",
+      "Thoughtful interfaces and clear user flows that make complex products feel simple, from wireframes to high-fidelity prototypes.",
   },
   {
     number: "03",
-    name: "Motion Design",
+    name: "Software Development",
     description:
-      "Dynamic animations and motion graphics that add energy and storytelling to brands, products, and digital experiences.",
+      "Clean, dependable software in Python and JavaScript, covering automation, tooling, and features that ship reliably.",
   },
   {
     number: "04",
