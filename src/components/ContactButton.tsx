@@ -1,9 +1,11 @@
 export default function ContactButton({
   className = "",
   href = "#contact",
+  label = "Contact Me",
 }: {
   className?: string;
   href?: string;
+  label?: string;
 }) {
   return (
     <a
@@ -17,7 +19,7 @@ export default function ContactButton({
         outlineOffset: "-3px",
       }}
     >
-      Contact Me
+      {label}
     </a>
   );
 }
