@@ -80,7 +80,7 @@ function BottomBar({ progress }: { progress: MotionValue<number> }) {
             className="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[160px] sm:max-w-[220px] md:max-w-[260px]"
             style={{ fontSize: "clamp(0.75rem, 1.4vw, 1.5rem)" }}
           >
-            a mobile app developer &amp; ui/ux designer crafting striking, unforgettable digital experiences
+            a mobile app developer &amp; ui/ux designer working across ai, devops and embedded systems
           </p>
         </FadeIn>
         <FadeIn delay={0.5} y={20}>

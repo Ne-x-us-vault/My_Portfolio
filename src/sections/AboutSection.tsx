@@ -38,7 +38,7 @@ const ABSOLUTE_IMAGES = [
 ];
 
 const ABOUT_TEXT =
-  "I'm a mobile app developer and ui/ux designer based in tamil nadu, india. i build intuitive apps and thoughtful interfaces, focusing on user experience, and i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!";
+  "i build across mobile applications, ui/ux, and embedded systems, with a growing focus on robotics and devops. i favor practical, bolt-on solutions over full system rebuilds, and i work fastest under a deadline -- most of my shipped projects started as hackathon builds. based in tamil nadu, india.";
 
 export default function AboutSection() {
   return (

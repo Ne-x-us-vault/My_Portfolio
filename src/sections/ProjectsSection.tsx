@@ -5,8 +5,13 @@ import LiveProjectButton from "../components/LiveProjectButton";
 const PROJECTS = [
   {
     number: "01",
-    name: "Nextlevel Studio",
-    category: "Client",
+    name: "Nexus Launcher",
+    category: "Open Source",
+    summary:
+      "A frost-glass, keyboard-first GNOME Shell launcher with instant app search, arrow-key navigation, and quick actions for Terminal, Files, GitHub and LinkedIn.",
+    stack: ["JavaScript", "GNOME Shell", "GJS", "Linux"],
+    href: "https://github.com/Ne-x-us-vault/custom-launcher-nexus",
+    // TODO: replace with real screenshots of the extension overlay.
     images: {
       col1Top:
         "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85",
@@ -18,8 +23,13 @@ const PROJECTS = [
   },
   {
     number: "02",
-    name: "Aura Brand Identity",
-    category: "Personal",
+    name: "Lovit",
+    category: "Mobile App",
+    summary:
+      "A private realtime couples app built with Flutter and Supabase — encrypted chat, a shared calendar, cycle tracking, budgets, tasks and live location sharing.",
+    stack: ["Flutter", "Dart", "Supabase", "Realtime"],
+    href: "https://github.com/Ne-x-us-vault/Tether",
+    // TODO: replace with real screenshots of the app.
     images: {
       col1Top:
         "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85",
@@ -31,8 +41,13 @@ const PROJECTS = [
   },
   {
     number: "03",
-    name: "Solaris Digital",
-    category: "Client",
+    name: "PiVision",
+    category: "Embedded / R&D",
+    summary:
+      "Touchless computer control on a Raspberry Pi 5. MediaPipe reads 21 hand landmarks from a webcam and injects cursor, click and scroll input into Linux through a virtual uinput device.",
+    stack: ["Python", "Raspberry Pi", "MediaPipe", "OpenCV"],
+    href: "https://github.com/Ne-x-us-vault/pivision",
+    // TODO: replace with a photo of the Pi + webcam rig.
     images: {
       col1Top:
         "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&w=1280&q=85",
@@ -72,15 +87,15 @@ function ProjectCard({ project, index, total, containerRef }: ProjectCardProps) 
         style={cardStyle}
         className="relative flex w-full max-w-[1100px] origin-top flex-col rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-6 sm:p-8 md:p-10"
       >
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-4 sm:gap-6 min-w-0">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="flex items-start gap-4 sm:gap-6 min-w-0">
             <span
               className="text-[#D7E2EA] font-black leading-none shrink-0 whitespace-nowrap"
               style={{ fontSize: "clamp(2.5rem, 8vw, 110px)" }}
             >
               {project.number}
             </span>
-            <div className="flex flex-col items-start gap-1 min-w-0">
+            <div className="flex flex-col items-start gap-2 min-w-0">
               <span className="text-[#D7E2EA] font-light uppercase tracking-widest text-xs sm:text-sm md:text-base">
                 {project.category}
               </span>
@@ -90,9 +105,29 @@ function ProjectCard({ project, index, total, containerRef }: ProjectCardProps) 
               >
                 {project.name}
               </h3>
+              <p
+                className="text-[#D7E2EA] font-light leading-snug max-w-[52ch]"
+                style={{
+                  fontSize: "clamp(0.75rem, 1.3vw, 1.05rem)",
+                  opacity: 0.65,
+                }}
+              >
+                {project.summary}
+              </p>
+              <ul className="flex flex-wrap gap-2 pt-0.5">
+                {project.stack.map((tech) => (
+                  <li
+                    key={tech}
+                    className="rounded-full border border-[#D7E2EA]/30 px-3 py-1 text-[#D7E2EA] font-light uppercase tracking-wider whitespace-nowrap"
+                    style={{ fontSize: "clamp(0.6rem, 0.9vw, 0.75rem)" }}
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-          <LiveProjectButton className="shrink-0" />
+          <LiveProjectButton href={project.href} className="shrink-0" />
         </div>
 
         <div className="mt-6 sm:mt-8 flex flex-1 min-h-0 gap-3 sm:gap-4">

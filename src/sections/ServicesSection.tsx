@@ -31,6 +31,24 @@ const SERVICES = [
     description:
       "Designing clean, modern, and conversion-focused websites with attention to layout, typography, and user experience.",
   },
+  {
+    number: "06",
+    name: "AI & Machine Learning",
+    description:
+      "Applied AI in Python -- NLI entailment pipelines, retrieval with FAISS, LLM reliability scoring, and STT plus LLM workflows that ship as working products.",
+  },
+  {
+    number: "07",
+    name: "DevOps & Cloud",
+    description:
+      "Reproducible builds with Docker, Linux and Git workflows, and CI automation that keeps releases boring and deployments predictable.",
+  },
+  {
+    number: "08",
+    name: "Robotics & Embedded",
+    description:
+      "Arduino and Raspberry Pi systems in Python, C++ and Kotlin -- computer vision, sensor work, and hardware you can hold in your hands.",
+  },
 ];
 
 export default function ServicesSection() {
