@@ -1,6 +1,16 @@
-import { motion, useScroll, useTransform, type MotionStyle } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+  type MotionStyle,
+  type MotionValue,
+} from "framer-motion";
 import { useRef, type RefObject } from "react";
 import LiveProjectButton from "../components/LiveProjectButton";
+import RevealHeading from "../components/RevealHeading";
+import SpotlightCard from "../components/SpotlightCard";
 
 const PROJECTS = [
   {
@@ -59,6 +69,34 @@ const PROJECTS = [
   },
 ];
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+/**
+ * Screenshot tile. The image is deliberately oversized so the scroll parallax
+ * never exposes an edge, and it zooms gently while the card is hovered.
+ */
+function Shot({
+  src,
+  alt,
+  parallax,
+}: {
+  src: string;
+  alt: string;
+  parallax: MotionValue<number> | number;
+}) {
+  return (
+    <div className="relative h-full min-h-0 w-full overflow-hidden rounded-[40px] sm:rounded-[50px] md:rounded-[60px] group-hover/shot:z-10">
+      <motion.img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className="absolute inset-0 h-full w-full scale-[1.14] object-cover transition-[scale,opacity] duration-700 ease-out group-hover/shot:scale-[1.22]"
+        style={{ y: parallax }}
+      />
+    </div>
+  );
+}
+
 interface ProjectCardProps {
   project: (typeof PROJECTS)[number];
   index: number;
@@ -66,7 +104,13 @@ interface ProjectCardProps {
   containerRef: RefObject<HTMLDivElement | null>;
 }
 
-function ProjectCard({ project, index, total, containerRef }: ProjectCardProps) {
+function ProjectCard({
+  project,
+  index,
+  total,
+  containerRef,
+}: ProjectCardProps) {
+  const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -74,6 +118,20 @@ function ProjectCard({ project, index, total, containerRef }: ProjectCardProps) 
 
   const targetScale = 1 - (total - 1 - index) * 0.03;
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
+
+  // Each shot drifts at a different rate, which gives the stacked cards depth.
+  const imgA = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, reducedMotion ? 0 : -26]),
+    { stiffness: 90, damping: 28, restDelta: 0.5 },
+  );
+  const imgB = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, reducedMotion ? 0 : 26]),
+    { stiffness: 90, damping: 28, restDelta: 0.5 },
+  );
+  const imgC = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, reducedMotion ? 0 : -12]),
+    { stiffness: 90, damping: 28, restDelta: 0.5 },
+  );
 
   const cardStyle: MotionStyle = {
     scale,
@@ -83,81 +141,147 @@ function ProjectCard({ project, index, total, containerRef }: ProjectCardProps) 
 
   return (
     <div className="h-[80vh] sticky top-24 md:top-32 flex justify-center">
-      <motion.div
-        style={cardStyle}
-        className="relative flex w-full max-w-[1100px] origin-top flex-col rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-6 sm:p-8 md:p-10"
-      >
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div className="flex items-start gap-4 sm:gap-6 min-w-0">
-            <span
-              className="text-[#D7E2EA] font-black leading-none shrink-0 whitespace-nowrap"
-              style={{ fontSize: "clamp(2.5rem, 8vw, 110px)" }}
-            >
-              {project.number}
-            </span>
-            <div className="flex flex-col items-start gap-2 min-w-0">
-              <span className="text-[#D7E2EA] font-light uppercase tracking-widest text-xs sm:text-sm md:text-base">
-                {project.category}
-              </span>
-              <h3
-                className="text-[#D7E2EA] font-medium uppercase"
-                style={{ fontSize: "clamp(1rem, 2.2vw, 2.1rem)" }}
+      <motion.div style={cardStyle} className="relative w-full max-w-[1100px] origin-top">
+        <SpotlightCard
+          cursorLabel="view"
+          className="group/shot flex h-full w-full flex-col rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 border-[#D7E2EA]/35 bg-[#0C0C0C] p-6 sm:p-8 md:p-10 transition-colors duration-500 hover:border-[#D7E2EA]/80"
+          radius={440}
+          intensity={0.09}
+          maxTilt={3}
+          hoverScale={1.004}
+        >
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div className="flex items-start gap-4 sm:gap-6 min-w-0">
+              <motion.span
+                className="hero-heading font-black leading-none shrink-0 whitespace-nowrap"
+                style={{ fontSize: "clamp(2.5rem, 8vw, 110px)" }}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.8, ease: EASE }}
               >
-                {project.name}
-              </h3>
-              <p
-                className="text-[#D7E2EA] font-light leading-snug max-w-[52ch]"
-                style={{
-                  fontSize: "clamp(0.75rem, 1.3vw, 1.05rem)",
-                  opacity: 0.65,
-                }}
-              >
-                {project.summary}
-              </p>
-              <ul className="flex flex-wrap gap-2 pt-0.5">
-                {project.stack.map((tech) => (
-                  <li
-                    key={tech}
-                    className="rounded-full border border-[#D7E2EA]/30 px-3 py-1 text-[#D7E2EA] font-light uppercase tracking-wider whitespace-nowrap"
-                    style={{ fontSize: "clamp(0.6rem, 0.9vw, 0.75rem)" }}
-                  >
-                    {tech}
-                  </li>
-                ))}
-              </ul>
+                {project.number}
+              </motion.span>
+              <div className="flex flex-col items-start gap-2 min-w-0">
+                <motion.span
+                  className="text-[#D7E2EA]/70 font-light uppercase tracking-widest text-xs sm:text-sm md:text-base"
+                  initial={{ opacity: 0, x: -12 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ duration: 0.6, delay: 0.1, ease: EASE }}
+                >
+                  {project.category}
+                </motion.span>
+                <motion.h3
+                  className="text-[#D7E2EA] font-medium uppercase"
+                  style={{ fontSize: "clamp(1rem, 2.2vw, 2.1rem)" }}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ duration: 0.7, delay: 0.16, ease: EASE }}
+                >
+                  {project.name}
+                </motion.h3>
+                <motion.p
+                  className="text-[#D7E2EA] font-light leading-snug max-w-[52ch]"
+                  style={{
+                    fontSize: "clamp(0.75rem, 1.3vw, 1.05rem)",
+                    opacity: 0.65,
+                  }}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 0.65, y: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ duration: 0.7, delay: 0.22, ease: EASE }}
+                >
+                  {project.summary}
+                </motion.p>
+                <motion.ul
+                  className="flex flex-wrap gap-2 pt-0.5"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.4 }}
+                  variants={{
+                    visible: {
+                      transition: { staggerChildren: 0.06, delayChildren: 0.3 },
+                    },
+                  }}
+                >
+                  {project.stack.map((tech) => (
+                    <motion.li
+                      key={tech}
+                      className="rounded-full border border-[#D7E2EA]/30 px-3 py-1 text-[#D7E2EA] font-light uppercase tracking-wider whitespace-nowrap"
+                      style={{ fontSize: "clamp(0.6rem, 0.9vw, 0.75rem)" }}
+                      variants={{
+                        hidden: { opacity: 0, y: 12, scale: 0.9 },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          scale: 1,
+                          transition: { duration: 0.5, ease: EASE },
+                        },
+                      }}
+                      whileHover={{
+                        scale: 1.08,
+                        borderColor: "rgba(215,226,234,0.85)",
+                      }}
+                    >
+                      {tech}
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </div>
             </div>
+            <LiveProjectButton href={project.href} className="shrink-0" />
           </div>
-          <LiveProjectButton href={project.href} className="shrink-0" />
-        </div>
 
-        <div className="mt-6 sm:mt-8 flex flex-1 min-h-0 gap-3 sm:gap-4">
-          <div className="flex w-[40%] flex-col gap-3 sm:gap-4">
-            <div className="min-h-0 w-full" style={{ flex: 1 }}>
-              <img
-                src={project.images.col1Top}
-                alt={`${project.name} image 1`}
-                loading="lazy"
-                className="h-full w-full object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
+          <motion.div
+            className="mt-6 sm:mt-8 flex-1 min-h-0 flex gap-3 sm:gap-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={{
+              visible: {
+                transition: { staggerChildren: 0.09, delayChildren: 0.22 },
+              },
+            }}
+          >
+            <motion.div
+              className="flex w-[40%] flex-col gap-3 sm:gap-4"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1, transition: { duration: 0.6 } },
+              }}
+            >
+              <div className="min-h-0 w-full" style={{ flex: 1 }}>
+                <Shot
+                  src={project.images.col1Top}
+                  alt={`${project.name} image 1`}
+                  parallax={imgA}
+                />
+              </div>
+              <div className="min-h-0 w-full" style={{ flex: 1.4 }}>
+                <Shot
+                  src={project.images.col1Bottom}
+                  alt={`${project.name} image 2`}
+                  parallax={imgB}
+                />
+              </div>
+            </motion.div>
+            <motion.div
+              className="flex w-[60%] min-h-0"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1, transition: { duration: 0.6 } },
+              }}
+            >
+              <Shot
+                src={project.images.col2}
+                alt={`${project.name} image 3`}
+                parallax={imgC}
               />
-            </div>
-            <div className="min-h-0 w-full" style={{ flex: 1.4 }}>
-              <img
-                src={project.images.col1Bottom}
-                alt={`${project.name} image 2`}
-                loading="lazy"
-                className="h-full w-full object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
-              />
-            </div>
-          </div>
-          <div className="flex w-[60%] min-h-0">
-            <img
-              src={project.images.col2}
-              alt={`${project.name} image 3`}
-              loading="lazy"
-              className="h-full w-full object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
-            />
-          </div>
-        </div>
+            </motion.div>
+          </motion.div>
+        </SpotlightCard>
       </motion.div>
     </div>
   );
@@ -175,7 +299,7 @@ export default function ProjectsSection() {
         className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-16 sm:mb-20 md:mb-28"
         style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
       >
-        Project
+        <RevealHeading text="Project" />
       </h2>
 
       <div ref={containerRef} className="relative">

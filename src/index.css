@@ -20,10 +20,136 @@
     font-family: "Kanit", sans-serif;
     scroll-behavior: smooth;
   }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: #b600a8;
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid #bbccd7;
+    outline-offset: 3px;
+  }
+
+  img {
+    -webkit-user-drag: none;
+  }
 }
 
-.hero-heading {
-  background: linear-gradient(180deg, #646973 0%, #bbccd7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Hide the native cursor only while the custom ring is mounted. */
+html[data-custom-cursor="true"],
+html[data-custom-cursor="true"] * {
+  cursor: none !important;
+}
+
+@layer components {
+  .hero-heading {
+    background: linear-gradient(180deg, #646973 0%, #bbccd7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Slow drifting sheen for the big display headings. Two background layers
+     share one `background-clip: text`: the base metal gradient plus a
+     translucent highlight that travels across it, so the letters never lose
+     their colour. */
+  .heading-sheen {
+    background-image: linear-gradient(
+        100deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.18) 26%,
+        rgba(255, 255, 255, 0.6) 40%,
+        rgba(255, 255, 255, 0.18) 54%,
+        transparent 100%
+      ),
+      linear-gradient(180deg, #646973 0%, #bbccd7 100%);
+    background-repeat: repeat-x, no-repeat;
+    background-size: 220% 100%, 100% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: sheen 9s linear infinite;
+  }
+
+  /* Film grain overlay, kept in CSS so it never re-renders. */
+  .grain::after {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain 8s steps(6) infinite;
+  }
+
+  /* Masks used by the word-by-word heading reveals. The clip margin keeps
+     descenders visible while the words still slide in from below. */
+  .reveal-mask {
+    display: inline-block;
+    vertical-align: top;
+    overflow: clip;
+    overflow-clip-margin: 0.3em;
+  }
+}
+
+@keyframes sheen {
+  from {
+    /* Only the highlight layer travels; the base gradient stays put. */
+    background-position: 160% 0, 0 0;
+  }
+  to {
+    background-position: -60% 0, 0 0;
+  }
+}
+
+@keyframes grain {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  20% {
+    transform: translate3d(-4%, 3%, 0);
+  }
+  40% {
+    transform: translate3d(3%, -4%, 0);
+  }
+  60% {
+    transform: translate3d(-3%, -3%, 0);
+  }
+  80% {
+    transform: translate3d(4%, 2%, 0);
+  }
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto;
+  }
+
+  .heading-sheen,
+  .grain::after {
+    animation: none;
+  }
 }

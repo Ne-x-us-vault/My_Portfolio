@@ -1,62 +1,98 @@
-import { useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from "framer-motion";
 
 interface MagnetProps {
   children: ReactNode;
+  /** Extra px around the element where the pull starts. */
   padding?: number;
+  /** How far the element travels per px of pointer offset. */
   strength?: number;
-  activeTransition?: string;
-  inactiveTransition?: string;
+  /** Scale applied while the pointer is inside the field. */
+  activeScale?: number;
   className?: string;
 }
 
+/**
+ * Magnetic wrapper: the child drifts toward the pointer while it is nearby and
+ * springs back on exit. Uses motion values so pointer movement does not cause
+ * React renders, and is a no-op for reduced-motion visitors.
+ */
 export default function Magnet({
   children,
-  padding = 150,
-  strength = 3,
-  activeTransition = "transform 0.3s ease-out",
-  inactiveTransition = "transform 0.6s ease-in-out",
+  padding = 90,
+  strength = 0.28,
+  activeScale = 1.04,
   className = "",
 }: MagnetProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [transform, setTransform] = useState("translate3d(0px, 0px, 0px)");
-  const [isActive, setIsActive] = useState(false);
+  const reducedMotion = useReducedMotion();
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const distX = e.clientX - centerX;
-    const distY = e.clientY - centerY;
-    const dist = Math.sqrt(distX * distX + distY * distY);
-    const halfDiag = Math.sqrt(rect.width * rect.width + rect.height * rect.height) / 2;
+  const xValue = useMotionValue(0);
+  const yValue = useMotionValue(0);
+  const scaleValue = useMotionValue(1);
+  const x = useSpring(xValue, { stiffness: 260, damping: 22, mass: 0.5 });
+  const y = useSpring(yValue, { stiffness: 260, damping: 22, mass: 0.5 });
+  const scale = useSpring(scaleValue, { stiffness: 300, damping: 20 });
 
-    if (dist < halfDiag + padding) {
-      setIsActive(true);
-      setTransform(
-        `translate3d(${distX / strength}px, ${distY / strength}px, 0px)`
-      );
-    }
-  };
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || reducedMotion) return;
 
-  const handleMouseLeave = () => {
-    setIsActive(false);
-    setTransform("translate3d(0px, 0px, 0px)");
-  };
+    const onMove = (event: PointerEvent) => {
+      const rect = node.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const offsetX = event.clientX - centerX;
+      const offsetY = event.clientY - centerY;
+      const distance = Math.hypot(offsetX, offsetY);
+      const reach =
+        Math.hypot(rect.width, rect.height) / 2 + padding;
+
+      if (distance < reach) {
+        xValue.set(offsetX * strength);
+        yValue.set(offsetY * strength);
+        scaleValue.set(activeScale);
+      } else {
+        xValue.set(0);
+        yValue.set(0);
+        scaleValue.set(1);
+      }
+    };
+
+    const onLeave = () => {
+      xValue.set(0);
+      yValue.set(0);
+      scaleValue.set(1);
+    };
+
+    node.addEventListener("pointermove", onMove);
+    node.addEventListener("pointerleave", onLeave);
+    return () => {
+      node.removeEventListener("pointermove", onMove);
+      node.removeEventListener("pointerleave", onLeave);
+    };
+  }, [
+    activeScale,
+    padding,
+    reducedMotion,
+    scaleValue,
+    strength,
+    xValue,
+    yValue,
+  ]);
 
   return (
-    <div
+    <motion.div
       ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transform,
-        transition: isActive ? activeTransition : inactiveTransition,
-        willChange: "transform",
-      }}
-      className={className}
+      style={{ x, y, scale }}
+      className={`inline-block ${className}`}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }

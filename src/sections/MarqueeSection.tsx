@@ -1,4 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+  useVelocity,
+  type MotionValue,
+} from "framer-motion";
 
 const ROW1_IMAGES = [
   "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",
@@ -24,73 +33,95 @@ const ROW2_IMAGES = [
   "https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif",
   "https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif",
   "https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif",
-  "https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif",
 ];
+
+/** Seconds for one full pass of a row, so slower rows feel more relaxed. */
+const BASE_DURATION = 46;
 
 function Tile({ src }: { src: string }) {
   return (
-    <img
+    <motion.img
       src={src}
       alt="Work preview"
       width={420}
       height={270}
       loading="lazy"
       className="w-[420px] h-[270px] rounded-2xl object-cover shrink-0"
+      initial={{ opacity: 0, scale: 0.94 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     />
   );
 }
 
+/**
+ * Infinite marquee row. The list is duplicated once so the -50% keyframe loops
+ * seamlessly, and scroll velocity adds a skew so fast scrolling visibly bends
+ * the strip.
+ */
 function ImageRow({
   images,
-  direction,
-  offset,
+  duration,
+  reverse = false,
+  skew,
 }: {
   images: string[];
-  direction: "right" | "left";
-  offset: number;
+  duration: number;
+  reverse?: boolean;
+  skew: MotionValue<number> | number;
 }) {
-  const tripled = [...images, ...images, ...images];
-  const translateX =
-    direction === "right"
-      ? `translateX(${offset - 200}px)`
-      : `translateX(${-(offset - 200)}px)`;
+  const doubled = [...images, ...images];
+  const from = reverse ? "-50%" : "0%";
+  const to = reverse ? "0%" : "-50%";
 
   return (
-    <div className="flex gap-3" style={{ willChange: "transform", transform: translateX }}>
-      {tripled.map((src, i) => (
+    <motion.div
+      className="flex w-max gap-3 will-change-transform"
+      style={{ skewX: skew }}
+      animate={{ x: [from, to] }}
+      transition={{
+        duration,
+        ease: "linear",
+        repeat: Infinity,
+        repeatType: "loop",
+      }}
+    >
+      {doubled.map((src, i) => (
         <Tile key={`${src}-${i}`} src={src} />
       ))}
-    </div>
+    </motion.div>
   );
 }
 
 export default function MarqueeSection() {
+  const reducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
-  const [translateX, setTranslateX] = useState(-200);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const sectionTop =
-        sectionRef.current.getBoundingClientRect().top + window.scrollY;
-      const value =
-        (window.scrollY - sectionTop + window.innerHeight) * 0.3;
-      setTranslateX(value);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const { scrollY } = useScroll();
+  const velocity = useSpring(useVelocity(scrollY), {
+    stiffness: 260,
+    damping: 40,
+    restDelta: 1,
+  });
+  const skew = useTransform(velocity, [-2000, 0, 2000], [-4, 0, 4]);
 
   return (
     <section
       ref={sectionRef}
       className="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden"
     >
-      <div className="flex flex-col gap-3">
-        <ImageRow images={ROW1_IMAGES} direction="right" offset={translateX} />
-        <ImageRow images={ROW2_IMAGES} direction="left" offset={translateX} />
+      <div className="flex flex-col gap-3 [perspective:1400px]">
+        <ImageRow
+          images={ROW1_IMAGES}
+          duration={BASE_DURATION}
+          skew={reducedMotion ? 0 : skew}
+        />
+        <ImageRow
+          images={ROW2_IMAGES}
+          duration={BASE_DURATION * 1.3}
+          reverse
+          skew={reducedMotion ? 0 : skew}
+        />
       </div>
     </section>
   );
